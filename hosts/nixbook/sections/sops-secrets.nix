@@ -1,0 +1,39 @@
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  sops.defaultSopsFile = ../../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/dwarf/.config/sops/age/keys.txt";
+
+  sops.secrets."wifi/CocaCola" = {
+    owner = "wifi-secret-service";
+    # owner = config.users.users.dwarf.name;
+  };
+
+  systemd.services."wifi-secret" = {
+    script = ''
+      # !/usr/bin/env bash
+      set -e
+      exec sops exec-file /var/lib/wifi-service/wifi/CocaCola | nmcli device wifi connect CocaCola
+    '';
+    serviceConfig = {
+      User = "wifi-secret-service";
+      WorkingDirectory = "/var/lib/wifi-service";
+    };
+  };
+
+  users.users.wifi-secret-service = {
+    home = "/var/lib/wifi-service";
+    createHome = true;
+    isSystemUser = true;
+    extraGroups = ["networkmanager"];
+  };
+  users.groups.wifi-secret-service = {};
+}
