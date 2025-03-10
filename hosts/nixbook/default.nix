@@ -34,7 +34,7 @@
 # networking.hostName = "nixos"; # Define your hostname.
 {...}: {
   imports = [
-    ../common
+    ../common/default.nix
     # ./base_configuration.nix ## INCLUDE OR UPDATE THIS AFTER GENERATING CONFIG
 
     ## INCLUDE OR UPDATE THIS AFTER GENERATING CONFIG
@@ -42,7 +42,7 @@
     # ./base_hardware-configuration.nix
 
     ./disk-config.nix
-    ./sections
+    ./sections/default.nix
     # ./sections/default.nix
   ];
 }

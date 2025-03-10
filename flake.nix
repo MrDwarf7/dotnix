@@ -55,17 +55,21 @@
     nixosConfigurations = {
       nixbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
-          ./hosts/nixbook
+          ./hosts/nixbook/default.nix
         ];
       };
     };
-    homeConfigurations = {
+    homeConfigurations = let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {inherit system;};
+    in {
       "dwarf@nixbook" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs outputs home-manager;};
+        inherit system pkgs;
+        extraSpecialArgs = {inherit pkgs system inputs;}; #outputs = self; };
         modules = [
           ./home/dwarf/nixbook.nix
         ];

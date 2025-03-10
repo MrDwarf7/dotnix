@@ -21,7 +21,9 @@
     script = ''
       # !/usr/bin/env bash
       set -e
-      exec sops exec-file /var/lib/wifi-service/wifi/CocaCola | nmcli device wifi connect CocaCola
+      cat <<EOF > /var/lib/wifi-service/wifi-secret | nmcli password wifi CocaCola file /var/lib/wifi-service/wifi-secret
+      ${config.sops.secrets."wifi/CocaCola".secret}
+      EOF
     '';
     serviceConfig = {
       User = "wifi-secret-service";
