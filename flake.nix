@@ -14,6 +14,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ags.url = "github:aylur/ags";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    muxbar = {
+      url = "github:dlurak/muxbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    retch = {
+      url = "github:dlurak/retch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -23,6 +37,12 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,13 +50,15 @@
   };
 
   outputs = {
-    self,
+    # self,
     nixpkgs,
     disko,
-    home-manager,
+    muxbar,
+    ags,
+    spicetify-nix,
     ...
   } @ inputs: let
-    inherit (self) outputs;
+    # inherit (self) outputs;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -52,29 +74,23 @@
 
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations = {
-      nixbook = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          ./hosts/nixbook/default.nix
-        ];
-      };
-    };
-    homeConfigurations = let
+    nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      pkgs = import nixpkgs {inherit system;};
-    in {
-      "dwarf@nixbook" = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
-        extraSpecialArgs = {inherit pkgs system inputs;}; #outputs = self; };
-        modules = [
-          ./home/dwarf/nixbook.nix
-        ];
-      };
+      specialArgs = {inherit inputs ags spicetify-nix muxbar disko nixpkgs;};
+      modules = [
+        ./modules
+        ./hosts/nixbook/configuration.nix
+        disko.nixosModules.disko
+        inputs.home-manager.nixosModules.home-manager
+      ];
     };
+    # homeConfigurations."dwarf@nixbook" = inputs.home-manager.lib.homeManagerConfiguration {
+    #   extraSpecialArgs = {inherit inputs;}; #outputs = self; };
+    #   specialArgs = {inherit inputs;};
+    #   modules = [
+    #     ./home/dwarf/nixbook.nix
+    #   ];
+    # };
     formatter =
       forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };

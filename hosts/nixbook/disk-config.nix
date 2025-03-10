@@ -1,8 +1,4 @@
-{
-  lib,
-  ...
-  #
-}: let
+{...}: let
   attrs = [
     "compress=zstd"
     "noatime"
