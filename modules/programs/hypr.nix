@@ -23,7 +23,7 @@
       hyprsunset
       wlinhibit
 
-      # (import ../derivations/random-wall.nix {inherit pkgs;}) # TODO: Add this derivation and update the relvant paths in the code
+      (import ../derivations/random-wall.nix {inherit pkgs;}) # TODO: Add this derivation and update the relvant paths in the code
 
       (pkgs.writeShellScriptBin "rotate" ''
         if [ -z "$1" ]; then
