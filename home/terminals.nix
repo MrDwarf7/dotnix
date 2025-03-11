@@ -13,7 +13,7 @@
       font = {
         # name = "Mononoki Nerd Font Mono";
         name = "JetBrains Mono";
-        size = 11;
+        size = 12;
       };
       settings = {
         enable_audio_bell = false;
@@ -34,7 +34,7 @@
         ###########
         ## Fonts ##
         ###########
-        font-size = 11.0;
+        font-size = 12.0;
         font-family-bold = "JetBrains Mono ExtraBold";
         font-family-italic = "JetBrains Mono Italic";
         font-family-bold-italic = "JetBrains Mono ExtraBold Italic";
