@@ -11,6 +11,7 @@
 
   config = lib.mkIf config.program.cliDev.enable {
     environment.systemPackages = with pkgs; [
+      nixd
       alejandra
       gh
       git
