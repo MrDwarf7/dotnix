@@ -44,7 +44,7 @@ in {
               type = "btrfs";
 
               # If the disk was previously formatted, you can
-              # use extraArgs to forcibly reformat:
+              # use
               extraArgs = ["-f"];
 
               # By default, disko will mount the top-level
@@ -58,18 +58,15 @@ in {
                 "/rootfs" = {
                   mountpoint = "/";
                   mountOptions = attrs;
-                  extraArgs = ["-L root"];
                 };
 
                 "/nix" = {
                   mountpoint = "/nix";
                   mountOptions = attrs;
-                  extraArgs = ["-L nix"];
                 };
                 "/home" = {
                   mountpoint = "/home";
                   mountOptions = attrs;
-                  extraArgs = ["-L home"];
                 };
 
                 # "/home/dwarf" = {};
@@ -77,25 +74,22 @@ in {
                 "/var-log" = {
                   mountpoint = "/var/log";
                   mountOptions = attrs;
-                  extraArgs = ["-L var-log"];
                 };
 
                 "/var-machines" = {
                   mountpoint = "/var/machines";
                   mountOptions = attrs;
-                  extraArgs = ["-L var-machines"];
                 };
 
                 "/snapshots" = {
                   mountpoint = "/snapshots";
                   mountOptions = attrs;
-                  extraArgs = ["-L snapshots"];
                 };
 
                 "/swap" = {
                   mountpoint = "/.swapvol";
                   mountOptions = attrs;
-                  extraArgs = ["-L swap"];
+
                   # Create a swap file automatically in this subvolume
                   swap = {
                     # Named "swapfile" by default, size 4GiB
