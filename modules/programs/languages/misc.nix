@@ -27,6 +27,7 @@
       # terraform-ls
       # ansible-language-5erver
       # vue-language-server
+      tree-sitter
       hyprls
       helix-gpt
     ];
