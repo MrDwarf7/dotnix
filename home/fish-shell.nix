@@ -21,7 +21,10 @@
         ca = "clear && ls -lah";
         gst = "git status";
         gd = "git diff";
+        gfp = "git fetch --all && git pull";
         lg = "lazygit";
+        nos = "nh os switch";
+        nhs = "nh home switch";
         y = ''
           set tmp (mktemp -t "yazi-cwd.XXXXXX")
             yazi $argv --cwd-file="$tmp"
