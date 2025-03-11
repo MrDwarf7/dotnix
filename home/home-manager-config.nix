@@ -11,7 +11,7 @@
     home.username = "dwarf";
     home.homeDirectory = "/home/dwarf";
 
-    home.stateVersion = "24.05"; # Dont'change
+    home.stateVersion = "25.05"; # Dont'change
 
     programs.home-manager.enable = true;
   };
