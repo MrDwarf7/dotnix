@@ -54,56 +54,15 @@ in {
         enable = true;
         plugins = [pkgs.hyprlandPlugins.hyprgrass];
         settings = {
-          plugin = {
-            ## Disabled - No touch screen lol
-
-            # touch_gestures = {
-            #   sensitivity = 5.0;
-            #   workspace_swipe_fingers = 0;
-            #   workspace_swipe_edge = "lr";
-            #   long_press_delay = 400;
-            #   resize_on_border_long_press = true;
-            #   edge_margin = 75;
-            #   emulate_touchpad_swipe = false;
-
-            #   hyprgrass-bind = [
-            #     ", edge:r:l, workspace, +1"
-            #     ", edge:l:r, workspace, -1"
-            #     ", edge:d:u, exec, kill -34 $(pgrep wvkbd-mobintl) || ${pkgs.wvkbd}/bin/wvkbd-mobintl -L 300"
-
-            #     ", edge:l:u, exec, ${pkgs.pamixer}/bin/pamixer -i 4"
-            #     ", edge:l:d, exec, ${pkgs.pamixer}/bin/pamixer -d 4"
-
-            #     ", edge:r:u, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%"
-            #     ", edge:r:d, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
-
-            #     ", edge:u:d, exec, pkill nwg-drawer || ${pkgs.nwg-drawer}/bin/nwg-drawer"
-            #     ", swipe:4:d, killactive"
-
-            #     ", swipe:3:d, movetoworkspace, -1"
-            #     ", swipe:3:u, movetoworkspace, +1"
-
-            #     ", tap:3, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/screenshot.png && cat ~/Pictures/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy"
-            #     ", tap:4, fullscreen, 0"
-            #     ", tap:5, togglefloating"
-
-            #     ", swipe:3:ld, exec, ${pkgs.firefox}/bin/firefox"
-            #   ];
-
-            #   # longpress can trigger mouse binds:
-            #   hyprgrass-bindm = [
-            #     ", longpress:2, movewindow"
-            #     ", longpress:3, resizewindow"
-            #   ];
-            # };
-          };
+          plugins = {};
 
           # TODO: Have to figure out what the actual one is
-          # monitor = ["eDP-1,1920x1080,0x0,1"];
+          monitor = ["eDP-1,2560x1600,0x0,1"];
           exec-once = [
             "${myShell}/bin/${shellName}"
             "${pkgs.hyprpaper}/bin/hyprpaper"
             "${pkgs.wvkbd}/bin/wvkbd-mobintl --hidden -L 300"
+            # "${pkgs.waybar}/bin/waybar"
           ];
           general = {
             gaps_in = 5;
