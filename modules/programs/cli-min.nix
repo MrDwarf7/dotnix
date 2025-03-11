@@ -49,6 +49,10 @@
       llvm
       ripgrep
       sd
+      sops
+      age
+      ssh-to-age
+      ssh-to-pgp
       unzip
       vim
       wezterm

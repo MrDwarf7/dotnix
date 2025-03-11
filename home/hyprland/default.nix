@@ -115,13 +115,15 @@ in {
           };
           input = {
             kb_layout = "en";
-            kb_options = "caps:escape";
+            kb_options = "caps:swapescape";
             #kb_variant = "colemark";
             kb_model = "";
             kb_rules = "";
             follow_mouse = 1;
             sensitivity = 0;
-            touchpad.natural_scroll = false;
+            touchpad.natural_scroll = true;
+            repeat_rate = 35;
+            repeat_delay = 350;
           };
           gestures = {
             workspace_swipe = true;
