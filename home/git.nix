@@ -82,6 +82,12 @@
           process = "git-lfs filter-process";
           required = true;
         };
+
+        safe.directory = [
+          "*"
+          "/etc/nixos/*"
+          "/home/dwarf/dotnix"
+        ];
       };
     };
   };
