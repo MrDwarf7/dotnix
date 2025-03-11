@@ -37,6 +37,7 @@
       just # Rust based task runner
       lazygit
       lsof # List Of Open Files
+      neovim
       ouch # A CLI tool for compress & decompressing files and dir
       procs # Process viewer -- like ps
       tmux
