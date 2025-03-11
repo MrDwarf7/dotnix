@@ -9,7 +9,7 @@
   ...
 }: {
   imports = [
-    (import ./hardware-configuration.nix {inherit pkgs inputs lib config modulesPath;})
+    (import ./hardware-configuration.nix {inherit config lib pkgs modulesPath inputs;})
   ];
 
   bootloader = {
@@ -77,7 +77,7 @@
   };
 
   # TODO: add this back in once I have a better understanding of how to use it
-  home.sopsSecrets.enable = false;
+  sopsSecrets.enable = true;
 
   hardware.bluetooth = {
     enable = true;

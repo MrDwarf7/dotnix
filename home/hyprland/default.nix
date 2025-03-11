@@ -40,9 +40,9 @@
   };
 in {
   options = {
-    homeManagerModules.hyprland.enable = lib.mkEnableOption "Enable hyprland config";
+    home.hyprland.enable = lib.mkEnableOption "Enable hyprland config";
   };
-  config = with config.homeManagerModules;
+  config = with config.home;
     lib.mkIf hyprland.enable {
       wayland.windowManager.hyprland = let
         accent = colors.pink;

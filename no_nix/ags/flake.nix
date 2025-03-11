@@ -20,7 +20,7 @@
       bluetooth
       powerprofiles
       notifd
-	  apps
+      apps
 
       pkgs.hyprpicker
       pkgs.hyprsunset

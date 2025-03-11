@@ -11,9 +11,9 @@
   };
 in {
   options = {
-    homeManagerModules.moxide.enable = lib.mkEnableOption "Enable moxide (config)";
+    home.moxide.enable = lib.mkEnableOption "Enable moxide (config)";
 
-    homeManagerModules.moxide.paths = lib.mkOption {
+    home.moxide.paths = lib.mkOption {
       type = with lib.types; listOf (attrsOf str);
       default = [
         {
@@ -23,7 +23,7 @@ in {
       ];
       description = "List of directories with name and path to include in the YAML file";
     };
-    homeManagerModules.moxide.templates = lib.mkOption {
+    home.moxide.templates = lib.mkOption {
       default = {
         "nvim".windows = [
           {
@@ -34,25 +34,25 @@ in {
       };
       description = "List of directories with name and path to include in the YAML file";
     };
-    homeManagerModules.moxide.projects = lib.mkOption {
+    home.moxide.projects = lib.mkOption {
       default = {};
       description = "List of projects with name and path to include in the yaml files";
     };
   };
 
-  config = lib.mkIf config.homeManagerModules.moxide.enable {
+  config = lib.mkIf config.home.moxide.enable {
     home.file = let
       directories = {
-        ".config/moxide/directories.yaml".text = generators.mkDirectoryYaml config.homeManagerModules.moxide.paths;
+        ".config/moxide/directories.yaml".text = generators.mkDirectoryYaml config.home.moxide.paths;
       };
       templates =
         utils.transformAttrs
-        (config.homeManagerModules.moxide.templates)
+        (config.home.moxide.templates)
         (entry: ".config/moxide/templates/${entry.key}.yaml")
         (entry: {text = generators.mkTemplateYaml entry;});
       projects =
         utils.transformAttrs
-        (config.homeManagerModules.moxide.projects)
+        (config.home.moxide.projects)
         (entry: ".config/moxide/projects/${entry.key}.yaml")
         (entry: {text = generators.mkProjectYaml entry;});
     in

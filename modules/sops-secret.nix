@@ -9,39 +9,30 @@
   ];
 
   options = {
-    home.sopsSecrets.enable = lib.mkEnableOption "Enable sops-secret";
+    #                                    # lib.mkEnableOption "Enable sops-secret";
+    sopsSecrets.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable sops-secret";
+    };
   };
 
-  config = lib.mkIf config.home.sopsSecrets.enable {
-    sops.defaultSopsFile = ../../../secrets/secrets.yaml;
+  config = lib.mkIf config.sopsSecrets.enable {
+    sops.defaultSopsFile = "/home/dwarf/documents/dotnix/secrets/wifi.yaml";
+    # TODO: I assume we can remove this after it's not a real nix system?
+    sops.validateSopsFiles = false;
+
     sops.defaultSopsFormat = "yaml";
+    # sops.age.sshKeyPaths = [
+    #   ../../../.ssh/arch_id_ed25519
+    #   # "/home/dwarf/.ssh/id_ed25519"
+    # ];
     sops.age.keyFile = "/home/dwarf/.config/sops/age/keys.txt";
+    # "../../../.config/sops/age/keys.txt";
 
-    sops.secrets."wifi/CocaCola" = {
-      # owner = "wifi-secret-service";
-      # owner = config.users.users.dwarf.name;
+    sops.secrets = {
+      home_ssid = {};
+      home_pass = {};
     };
-
-    # systemd.services."wifi-secret" = {
-    #   script = ''
-    #     # !/usr/bin/env bash
-    #     set -e
-    #     cat <<EOF > /var/lib/wifi-service/wifi-secret | nmcli password wifi CocaCola file /var/lib/wifi-service/wifi-secret
-    #     ${config.sops.secrets."wifi/CocaCola".secret}
-    #     EOF
-    #   '';
-    #   serviceConfig = {
-    #     User = "wifi-secret-service";
-    #     WorkingDirectory = "/var/lib/wifi-service";
-    #   };
-    # };
-
-    # users.users.wifi-secret-service = {
-    #   home = "/var/lib/wifi-service";
-    #   createHome = true;
-    #   isSystemUser = true;
-    #   extraGroups = ["networkmanager"];
-    # };
-    # users.groups.wifi-secret-service = {};
   };
 }

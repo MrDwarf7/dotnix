@@ -1,4 +1,4 @@
-{...}: let
+let
   attrs = [
     "compress=zstd"
     "noatime"
@@ -6,17 +6,19 @@
     "discard=async"
     "space_cache=v2"
   ];
+
+  device = "/dev/sda";
 in {
   # Disko can manage multiple devices; we’ll just define one called "disk"
   # that points to /dev/sda. Adjust "device" as needed (e.g. /dev/nvme0n1).
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/sda";
+      device = device;
 
       content = {
         type = "gpt";
-        # Two partitions: EFI + Btrfs
+        # Two partitions: EFI (name: ESP) + Btrfs (name: root)
         partitions = {
           ESP = {
             # ~1 GiB for EFI
@@ -48,43 +50,33 @@ in {
               # By default, disko will mount the top-level
               # partition somewhere (unless you remove mountpoint),
               # but we can keep a neutral placeholder mountpoint:
-              mountpoint = "/partition-root";
+              # mountpoint = "/partition-root";
 
               # Our subvolumes:
               subvolumes = {
                 # Root subvolume
-                "/" = {
+                "/rootfs" = {
                   mountpoint = "/";
                   mountOptions = attrs;
-                  # = [
-                  #   "compress=zstd"
-                  #   "noatime"
-                  #   "ssd"
-                  #   "discard=async"
-                  #   "space_cache=v2"
-                  # ];
-
                   extraArgs = ["-L root"];
                 };
 
                 "/nix" = {
                   mountpoint = "/nix";
                   mountOptions = attrs;
-
                   extraArgs = ["-L nix"];
                 };
-
                 "/home" = {
                   mountpoint = "/home";
                   mountOptions = attrs;
-
                   extraArgs = ["-L home"];
                 };
+
+                # "/home/dwarf" = {};
 
                 "/var-log" = {
                   mountpoint = "/var/log";
                   mountOptions = attrs;
-
                   extraArgs = ["-L var-log"];
                 };
 
@@ -101,10 +93,9 @@ in {
                 };
 
                 "/swap" = {
-                  mountpoint = "/swap";
+                  mountpoint = "/.swapvol";
                   mountOptions = attrs;
                   extraArgs = ["-L swap"];
-
                   # Create a swap file automatically in this subvolume
                   swap = {
                     # Named "swapfile" by default, size 4GiB
@@ -114,9 +105,17 @@ in {
                   };
                 };
               };
-
               # Alternatively you can define top-level "swap = {...}" here
               # for a partition-wide swapfile, but we put it in /@swap above.
+              mountpoint = "/partition-root";
+              swap = {
+                swapfile = {
+                  size = "20M";
+                };
+                # swapfile1 = {
+                #   size = "20M";
+                # };
+              };
             };
           };
         };

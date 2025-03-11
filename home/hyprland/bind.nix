@@ -108,7 +108,7 @@ in {
     "${mainMod} SHIFT, Y, exec, ${agsPath} toggle bar"
     "${mainMod}, F8, exec, ${pkgs.rofi-wayland}/bin/rofi -show run"
     "${mainMod}, F9, exec, ${pkgs.rofi-wayland}/bin/rofi -show window"
-    "${mainMod}, F10, exec, ${import ../../nixOsModules/derivations/random-wall.nix {inherit pkgs;}}/bin/random-wall"
+    "${mainMod}, F10, exec, ${import ../../modules/derivations/random-wall.nix {inherit pkgs;}}/bin/random-wall"
   ];
   binde = [
     "${secondMod}, h, resizeactive, -5 0"

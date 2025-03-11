@@ -6,7 +6,14 @@
   ...
 }: {
   imports = [
-    (import ./programs {inherit config inputs lib pkgs;})
+    (import ./programs {
+      config = config;
+      inputs = inputs;
+      lib = lib;
+      pkgs = pkgs;
+
+      # inherit config inputs lib pkgs;
+    })
     ./bootloader.nix
     ./env-variables.nix
     ./firewall.nix
