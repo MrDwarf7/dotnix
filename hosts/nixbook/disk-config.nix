@@ -45,7 +45,7 @@ in {
 
               # If the disk was previously formatted, you can
               # use extraArgs to forcibly reformat:
-              # extraArgs = ["-f"];
+              extraArgs = ["-f"];
 
               # By default, disko will mount the top-level
               # partition somewhere (unless you remove mountpoint),
