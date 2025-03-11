@@ -57,7 +57,7 @@ in {
           plugins = {};
 
           # TODO: Have to figure out what the actual one is
-          monitor = ["eDP-1,2560x1600,0x0,1.25"];
+          monitor = ["eDP-1,2560x1600,0x0,1.33"];
           exec-once = [
             "${myShell}/bin/${shellName}"
             "${pkgs.hyprpaper}/bin/hyprpaper"
