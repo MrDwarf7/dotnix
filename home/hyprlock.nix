@@ -27,7 +27,7 @@ in {
           # };
           input-field = [
             {
-              size = "180, 30";
+              size = "180, 50";
               outline_thickness = 2;
               dots_size = 0.4;
               dots_spacing = 0.15;
@@ -35,6 +35,7 @@ in {
               outer_color = color "0.0";
               inner_color = color "0.1";
               font_color = color "0.8";
+              # font_size = 16;
               fade_on_empty = false;
               placeholder_text = "Enter Password";
               hide_input = false;

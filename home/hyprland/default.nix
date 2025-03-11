@@ -57,11 +57,12 @@ in {
           plugins = {};
 
           # TODO: Have to figure out what the actual one is
-          monitor = ["eDP-1,2560x1600,0x0,1"];
+          monitor = ["eDP-1,2560x1600,0x0,1.5"];
           exec-once = [
             "${myShell}/bin/${shellName}"
             "${pkgs.hyprpaper}/bin/hyprpaper"
             "${pkgs.wvkbd}/bin/wvkbd-mobintl --hidden -L 300"
+            # "${pkgs.hyprland}/bin/hyprland"
             # "${pkgs.waybar}/bin/waybar"
           ];
           general = {

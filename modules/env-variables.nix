@@ -20,12 +20,8 @@
     # Locales xdg dirs
     XDG_DESKTOP_DIR = "$HOME/Desktop";
     XDG_DOWNLOAD_DIR = "$HOME/downloads";
-    #XDG_TEMPLATES_DIR="$HOME/Templates"
-    #XDG_PUBLICSHARE_DIR="$HOME/Public"
     XDG_DOCUMENTS_DIR = "$HOME/documents";
-    #XDG_MUSIC_DIR="$HOME/Music"
-    XDG_PICTURES_DIR = "$HOME/Pictures";
-    #XDG_VIDEOS_DIR="$HOME/Videos"
+    XDG_PICTURES_DIR = "$HOME/pictures";
     ########
 
     WZT_ANIM_FPS = "144";
