@@ -67,6 +67,7 @@
       # speedtest # Speedtest CLI - kinda buggy on cli/nixos
       # inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       # llvm
+      thunderbird-latest
       nh # NixOS helper CLI ( similar to gh )
       nix-ld # NixOS linker for 'normal' binaries
       openssl

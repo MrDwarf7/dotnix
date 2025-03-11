@@ -13,17 +13,18 @@
     nixpkgs.overlays = [
     ];
     environment.systemPackages = with pkgs; [
-      nodePackages_latest.nodemon
-      nodePackages_latest.typescript
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.pnpm
-      nodePackages_latest.yarn
+      nodejs_latest
+      nodemon
+      typescript
+      typescript-language-server
+      pnpm
+      yarn
       bun
       deno
       # nodePackages_latest.vscode-languageservers-extracted
-      nodePackages_latest.yaml-language-server
-      nodePackages_latest.dockerfile-language-server-nodejs
-      nodePackages_latest.bash-language-server
+      yaml-language-server
+      dockerfile-language-server-nodejs
+      bash-language-server
       #    nodePackages_latest.graphql-language-service-cli
 
       # tree-sitter
