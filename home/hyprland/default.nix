@@ -52,7 +52,7 @@ in {
         rules = import ./rules.nix;
       in {
         enable = true;
-        plugins = [pkgs.hyprlandPlugins.hyprgrass];
+        # plugins = [pkgs.hyprlandPlugins.hyprgrass];
         settings = {
           plugins = {};
 
