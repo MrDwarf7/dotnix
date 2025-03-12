@@ -20,8 +20,27 @@
         cls = "clear";
         ca = "clear && ls -lah";
         gst = "git status";
+
+        g = "git";
+        ga = "git add";
+        gaa = "git add --all";
+        gb = "git branch";
+        gba = "git branch -a";
+        gc = "git commit";
+        gcb = "git checkout -b";
+        gcl = "git clone --recursive";
+        gcm = ''
+        '';
+
+        gpl = "git pull";
+        gpla = "git pull --all";
+
         gd = "git diff";
         gfp = "git fetch --all && git pull";
+        gp = "git push";
+        gco = "git checkout";
+        grv = "git remote -v";
+
         lg = "lazygit";
         nos = "nh os switch";
         nhs = "nh home switch";

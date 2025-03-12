@@ -116,7 +116,7 @@ in {
           };
           input = {
             kb_layout = "en";
-            kb_options = "caps:swapescape";
+            kb_options = "caps:escape";
             #kb_variant = "colemark";
             kb_model = "";
             kb_rules = "";
