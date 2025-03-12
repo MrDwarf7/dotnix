@@ -25,6 +25,8 @@
         lg = "lazygit";
         nos = "nh os switch";
         nhs = "nh home switch";
+        b = "bat";
+        c = "cat";
         y = ''
           set tmp (mktemp -t "yazi-cwd.XXXXXX")
             yazi $argv --cwd-file="$tmp"
