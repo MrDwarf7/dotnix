@@ -11,7 +11,6 @@
   config = lib.mkIf config.program.river.enable {
     environment.systemPackages = with pkgs; [
       river
-
       glib
       wl-clipboard
       grim
