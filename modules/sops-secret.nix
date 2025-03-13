@@ -18,7 +18,7 @@
   };
 
   config = lib.mkIf config.sopsSecrets.enable {
-    sops.defaultSopsFile = "/home/dwarf/documents/dotnix/secrets/wifi.yaml";
+    sops.defaultSopsFile = "/home/dwarf/dotnix/secrets/wifi.yaml";
     # TODO: I assume we can remove this after it's not a real nix system?
     sops.validateSopsFiles = false;
 

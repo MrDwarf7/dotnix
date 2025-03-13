@@ -5,7 +5,8 @@
   ...
 }: let
   home_ssid = config.sops.secrets.home_ssid;
-  # home_pass = lib.mkString config.sops.secrets.home_pass;
+  home_pass = lib.mkString config.sops.secrets.home_pass;
+  device = "wlp2s0";
 in {
   options = {
     networkModule.enable = lib.mkEnableOption "Enable the custom network module";
@@ -33,14 +34,17 @@ in {
 
     lib.systemd.services.set-wifi-password = {
       # systemd.services.set-wifi-password = {
-      inherit home_ssid pkgs config;
+      inherit home_ssid home_pass device pkgs config;
       description = "Set the wifi password";
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = ''
-          ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${config.sops.secrets.home_ssid.path})" wifi-sec.psk "$(cat ${config.sops.secrets.home_pass.path})"
+          ip link set ${device} up
+          ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
+          wpa_supplicant -B -i ${device} -c <(wpa_passphrase "$(cat ${home_ssid.path})" "$(cat ${home_pass.path})")
+          dhclient ${device}
         '';
         # ${pkgs.networkmanager}/bin/nmcli con mod ${home_ssid} wifi-sec.psk ${home_ssid.psk}
       };
