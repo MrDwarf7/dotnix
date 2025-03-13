@@ -72,8 +72,8 @@
         '';
       };
       interactiveShellInit = ''
-            if test -e /usr/sbin/starship
-                /usr/sbin/starship init fish | source
+            if test -e starship; and test -x starship
+                starship init fish | source
                 commandline -f repaint
             end
         fish_vi_key_bindings
