@@ -115,7 +115,7 @@ in {
             disable_hyprland_logo = false;
           };
           input = {
-            kb_layout = "en";
+            kb_layout = "us";
             kb_options = "caps:escape";
             #kb_variant = "colemark";
             kb_model = "";
