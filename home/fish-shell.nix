@@ -34,6 +34,7 @@
         la = "ls -lah";
         cls = "clear";
         ca = "clear && ls -lah";
+        ef = "exec fish";
         gst = "git status";
         gf = "git fetch";
 
@@ -62,14 +63,6 @@
         nhs = "nh home switch";
         b = "bat";
         c = "cat";
-        y = ''
-          set tmp (mktemp -t "yazi-cwd.XXXXXX")
-            yazi $argv --cwd-file="$tmp"
-            if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-              builtin cd -- "$cwd"
-            end
-            rm -f -- "$tmp"
-        '';
       };
       interactiveShellInit = ''
             if test -e starship; and test -x starship
@@ -78,6 +71,42 @@
             end
         fish_vi_key_bindings
       '';
+
+      functions = {
+        md = {
+          body = ''
+            mkdir -p $argv
+          '';
+        };
+        y = {
+          body = ''
+            set tmp (mktemp -t "yazi-cwd.XXXXXX")
+              yazi $argv --cwd-file="$tmp"
+              if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                builtin cd -- "$cwd"
+              end
+              rm -f -- "$tmp"
+          '';
+        };
+
+        fish_user_key_bindings = {
+          body = ''
+            set -x fish_sequence_key_delay_ms 160
+
+            bind -M default H beginning-of-line
+            bind -M default L end-of-line
+
+            bind -M visual H beginning-of-line
+            bind -M visual L end-of-line
+
+            bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint; end"
+            bind -M insert jj "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint; end"
+            bind -M insert kj "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint; end"
+            bind -M insert kk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint; end"
+
+          '';
+        };
+      };
     };
 
     # shellInit = {
