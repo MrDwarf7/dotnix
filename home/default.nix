@@ -8,6 +8,7 @@
     ./fish-shell.nix
     ./gh.nix
     ./git.nix
+    ./gpg.nix
     ./gtk.nix
     ./home-manager-config.nix
     ./hypridle.nix

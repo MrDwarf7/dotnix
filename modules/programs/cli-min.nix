@@ -31,6 +31,7 @@
       fzy # Fuzzy finder
       gh # GitHub CLI
       git
+      gnupg # GPG / GnuPG
       gping # ping - with GRAPHS!
       hexyl # hex viewer
       jujutsu # Weider, wilder Git alternative

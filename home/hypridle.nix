@@ -4,10 +4,13 @@
   lib,
   ...
 }: let
+  asMins = mins: 60 * mins;
   lock = "pidof hyprlock || hyprlock";
   lockWarning = 30;
-  lockTimeout = 60 * 5;
-  suspendTimeout = 60 * 10;
+  lockTimeout = asMins 5;
+  # 60 * 5;
+  suspendTimeout = asMins 20;
+  # 60 * 10;
 in {
   options = {
     home.hypridle.enable = lib.mkEnableOption "Enable hypridle (config)";

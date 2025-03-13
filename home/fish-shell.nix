@@ -35,10 +35,9 @@
         cls = "clear";
         ca = "clear && ls -lah";
         ef = "exec fish";
-        gst = "git status";
-        gf = "git fetch";
-
         g = "git";
+        gf = "git fetch";
+        gst = "git status";
         ga = "git add";
         gaa = "git add --all";
         gb = "git branch";
@@ -46,9 +45,7 @@
         gc = "git commit";
         gcb = "git checkout -b";
         gcl = "git clone --recursive";
-        gcm = ''
-        '';
-
+        grl = "git reflog -5";
         gpl = "git pull";
         gpla = "git pull --all";
 
@@ -73,6 +70,28 @@
       '';
 
       functions = {
+        GetGitMainBranch = {
+          body = ''
+                # Check if we're in a git repository
+                git rev-parse --git-dir >/dev/null 2>&1
+                if test $status -ne 0
+                    return
+                end
+
+                # Array of possible main branches
+                set branches main trunk
+
+                # Loop through branches
+                for branch in $branches
+                    git show-ref -q --verify refs/heads/$branch >/dev/null 2>&1
+                    if test $status -eq 0
+                        echo $branch
+                        return
+                    end
+            end
+          '';
+        };
+
         md = {
           body = ''
             mkdir -p $argv
@@ -86,6 +105,29 @@
                 builtin cd -- "$cwd"
               end
               rm -f -- "$tmp"
+          '';
+        };
+
+        gcm = {
+          body = ''
+            set MainBranch (GetGitMainBranch)
+            git checkout $MainBranch $argv
+          '';
+        };
+
+        dot = {
+          body = ''
+            pushd $DOT_DIR || return 1
+            git fetch --all
+            git status
+            # check if the output actually fetched anything before askign user to pull
+            if git status | grep -q 'Your branch is behind'; and git status | grep -q 'nothing to commit'; and git status | grep -q 'working tree clean'
+                echo "Would you like to pull the latest changes?"
+                read -l -P "pull [y/N]: " pull
+                if test "$pull" = "y" || test "$pull" = "Y"
+                    git pull
+                end
+            end
           '';
         };
 
