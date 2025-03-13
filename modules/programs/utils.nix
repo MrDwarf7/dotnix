@@ -19,10 +19,17 @@
       upower
       ngrok
       wf-recorder
-
+      # keyd
       (writers.writeRustBin "colors" {} (builtins.readFile ../scripts/colors.rs))
       (writers.writeRustBin "timestamp" {} (builtins.readFile ../scripts/timestamp.rs))
     ];
+
+    # keyd = {
+    #   enable = true;
+    #   configFile = ../../no_nix/capslock-escape-with-vim-mode.conf;
+    #   # configFile = ../../no_nix/capslock-esc.conf;
+    # };
+
     # services.kanata = {
     #   enable = true;
 
