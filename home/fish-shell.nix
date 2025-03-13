@@ -12,6 +12,21 @@
   };
 
   config = lib.mkIf config.home.fishShell.enable {
+    programs.zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    programs.starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    programs.direnv = {
+      enable = true;
+      # enableFishIntegration = true;
+    };
+
     programs.fish = {
       enable = true;
       shellAliases = {
@@ -56,11 +71,19 @@
             rm -f -- "$tmp"
         '';
       };
+      interactiveShellInit = ''
+            if test -e /usr/sbin/starship
+                /usr/sbin/starship init fish | source
+                commandline -f repaint
+            end
+        fish_vi_key_bindings
+      '';
     };
 
-    programs.zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
+    # shellInit = {
+    # };
+
+    # shellInitLast = {
+    # };
   };
 }

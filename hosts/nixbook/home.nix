@@ -50,9 +50,9 @@ in {
   # home.zshShell.enable = true; ## Have to move it later
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
-    # enableFishIntegration = true; ### TODO: No idea why but I cannot turn this on because apparently it's already set???????
-    enableZshIntegration = true;
+    # enableBashIntegration = true;
+    # # enableFishIntegration = true; ### TODO: No idea why but I cannot turn this on because apparently it's already set???????
+    # enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 

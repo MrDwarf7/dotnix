@@ -9,9 +9,10 @@
   config = lib.mkIf config.home.starship.enable {
     programs.starship = {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      enableFishIntegration = true;
+      # Do these in their respective shell configs
+      ### enableBashIntegration = true;
+      ### enableZshIntegration = true;
+      ### enableFishIntegration = true;
 
       settings = {
         command_timeout = 10000;

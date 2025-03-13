@@ -8,7 +8,7 @@
 
 - Figure out what river is used for and if I want to keep it
 
-## Big ones
+## Big ones for home-manager
 
 Make decision on what is actually worth porting, as Home-Manager
 treats folders under it's control as immutable, which for config files
