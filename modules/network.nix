@@ -42,7 +42,7 @@ in {
         Type = "oneshot";
         ExecStart = ''
           ip link set ${device} up
-          ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
+          # ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
           wpa_supplicant -B -i ${device} -c <(wpa_passphrase "$(cat ${home_ssid.path})" "$(cat ${home_pass.path})")
           dhclient ${device}
         '';
