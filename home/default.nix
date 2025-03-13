@@ -6,6 +6,7 @@
     ./bat.nix
     # ./default.nix
     ./fish-shell.nix
+    ./gh.nix
     ./git.nix
     ./gtk.nix
     ./home-manager-config.nix
