@@ -28,7 +28,7 @@ in {
     in {
       enable = true;
       settings = {
-        keyboard-layout = ''-options "caps:escape" de'';
+        keyboard-layout = ''-options "caps:escape" en'';
         set-repeat = "50 300";
         focus-follows-cursor = "always";
         set-cursor-warp = "on-focus-change";

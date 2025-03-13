@@ -1,3 +1,4 @@
 .git
 _temp_for_clone
 .old_x
+.direnv

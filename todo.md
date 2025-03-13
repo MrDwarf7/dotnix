@@ -1,20 +1,16 @@
-# Todo's & Fixme's 
-
+# Todo's & Fixme's
 
 ## Fixme's
 
-- Caps locks will lockup and stay on, only way to fix is reboot
 - networkctl doesn't autostart
 - have to call Hyprland manually on login
 - Waybar not starting automatically
 
 - Figure out what river is used for and if I want to keep it
 
-
-
 ## Big ones
 
-Make decision on what is actually worth porting, as Home-Manager 
+Make decision on what is actually worth porting, as Home-Manager
 treats folders under it's control as immutable, which for config files
 that change when you change things in the application, can cause issues.
 (Zed, Lazygit, etc)
@@ -55,13 +51,11 @@ Full list, break apart later:
 - zig + zls
 - vim-language-server
 
-
-### Not sure what or how to - 
+### Not sure what or how to -
 
 - Jetbrains Toolbox
-- Jetbrains Idea 
+- Jetbrains Idea
 - Zed > VsCode (lol)
-
 
 ## Not currently installed - decide if bother
 
@@ -70,6 +64,7 @@ Full list, break apart later:
 - neovide
 
 -- Python things
+
 - Nuitka
 - rich
 - typer / typer-cli
@@ -77,7 +72,6 @@ Full list, break apart later:
 - debugpy
 - icecream
 - vulture
-
 
 ## Ensure installed/+ setup, or start using, or add
 
@@ -97,12 +91,13 @@ Full list, break apart later:
 - grex ??
 
 ## Various linters etc.
+
 - shellcheck
 - clangd & clang-tidy stuff
 - omnisharp
-    - csharpier
+  - csharpier
 - markdown thing (not markdownoxide, there's another one)
-    - marksman
+  - marksman
 - sqlfluff
 - taplo
 - prisma-language-server
@@ -110,8 +105,7 @@ Full list, break apart later:
 - EsLint (maybe...?)
 - css-lsp
 - cmakelang
-- 
-
+-
 
 ## Other
 

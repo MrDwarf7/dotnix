@@ -20,6 +20,7 @@
         cls = "clear";
         ca = "clear && ls -lah";
         gst = "git status";
+        gf = "git fetch";
 
         g = "git";
         ga = "git add";

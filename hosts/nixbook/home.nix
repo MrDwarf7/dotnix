@@ -34,7 +34,8 @@ in {
     # path = "/home/dwarf/Pictures/wallpapers/hyprpaper.png";
     # path = "../../assets/wallpaper/geometry.png";
     # path = "../../assets/wallpaper/ryo-vending.png";
-    path = ../../assets/wallpaper/stripes.png;
+    path = "/home/dwarf/dotnix/assets/wallpaper/ryo-vending.png";
+    # path = ../../assets/wallpaper/stripes.png;
   };
   home.hyprland.enable = true;
   home.moxide = import ./moxide.nix;
