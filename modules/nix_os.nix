@@ -14,7 +14,20 @@
 
   config = lib.mkIf config.nixModule.enable {
     nixpkgs.config.allowUnfree = true;
-    nix.settings.experimental-features = ["nix-command" "flakes"];
     system.stateVersion = config.nixModule.stateVersion;
+    nix = {
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
+
+      settings = {
+        experimental-features = ["nix-command" "flakes"];
+        max-jobs = 3;
+        trusted-users = ["builder "];
+      };
+      optimise.automatic = true;
+    };
   };
 }

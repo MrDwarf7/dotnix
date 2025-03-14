@@ -2,12 +2,17 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
-  # home_ssid = config.sops.secrets.home_ssid;
-  # home_pass = lib.mkString config.sops.secrets.home_pass;
+  home_ssid = config.sops.secrets.home_ssid;
+  home_pass = lib.ReadFile config.sops.secrets.home_pass.path;
   # device = "wlp3s0";
 in {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
   options = {
     networkModule.enable = lib.mkEnableOption "Enable the custom network module";
     networkModule.hostName = lib.mkOption {
@@ -29,10 +34,15 @@ in {
       "wlp3s0"
     ];
 
+    networking.wireless.secretsFile = config.sops.defaultSopsFile;
+
     networking.wireless.networks = {
-      "${config.sops.secrets.home_ssid.path}" = {
-        psk = config.sops.secrets.home_pass.path;
+      "CocaCola" = {
+        psk = "/run/secrets/wifi/CocaCola";
       };
+      # "${config.sops.secrets.home_ssid.key}" = {
+      #   psk = config.sops.secrets.home_pass;
+      # };
     };
 
     networking.useNetworkd = true;

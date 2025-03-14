@@ -22,7 +22,12 @@
     ./network.nix
     ./nix_os.nix
     ./power-off.nix
-    ./sops-secret.nix
+    (import ./sops-secret.nix {
+      pkgs = pkgs;
+      lib = lib;
+      config = config;
+      inputs = inputs;
+    })
     ./xdg.nix
   ];
 }

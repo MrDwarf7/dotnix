@@ -26,6 +26,8 @@
     ${pkgs.systemd}/bin/systemctl restart wpa_supplicant.service
   '';
 
+  ## Make kernal bootup FAST! -- may also leak your data lmao
+  # mitigations=off
   boot.kernelParams = [
     "hid_apple.swap_fn_leftctrl=1"
   ];
