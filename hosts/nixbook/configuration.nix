@@ -28,7 +28,7 @@
   users.users.dwarf = {
     isNormalUser = true;
     description = "Dwarrf";
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager"]; ## NOTE: netowrkmanager // systemd-networkd // iwp // wpa_supplicant
   };
 
   programs.fish.enable = true;

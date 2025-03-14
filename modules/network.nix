@@ -21,9 +21,9 @@ in {
     networking.hostName = config.networkModule.hostName;
     # networking.networkmanager.enable = true;
     # Allow for `http://👻` thx to @elmo@chaos.social
-    networking.hosts = {
-      "127.0.0.1" = ["xn--9q8h" "localghost"];
-    };
+    # networking.hosts = {
+    #   "127.0.0.1" = ["xn--9q8h" "localghost"];
+    # };
     networking.wireless.enable = true;
     networking.wireless.networks = {
       home_ssid = {
@@ -31,6 +31,20 @@ in {
         # home_pass;
       };
     };
+
+    networking.useDHCP = true; # Use it GLOBALY
+
+    networking.interfaces.wlp350.useDHCP = true;
+
+    networking.useNetworkd = true;
+    systemd.network.networks."40-wifi" = {
+      matchConfig.Name = "wlp350";
+      networkConfig.DHCP = "yes"; # Use it for this specific interface
+    };
+
+    # systemd.network.networks."wlp350" = {
+    #   networkConfig.DHCP = "yes";
+    # };
 
     lib.systemd.services.set-wifi-password = {
       # systemd.services.set-wifi-password = {
