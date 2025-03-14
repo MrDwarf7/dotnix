@@ -42,6 +42,15 @@ in {
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
+    systemd.services."wpa_supplicant" = {
+      after = ["sops-nix.service"];
+      wants = ["network-pre.target"];
+      before = ["network.target" "systemd-networkd.service"];
+      unitConfig = {
+        ConditionCapability = "CAP_NET_ADMIN";
+      };
+    };
+
     networking.useDHCP = false; # Use it GLOBALY
 
     # sops.secrets.home_ssid = {
