@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  home_ssid = config.sops.secrets.home_ssid;
-  home_pass = lib.mkString config.sops.secrets.home_pass;
-  device = "wlp3s0";
+  # home_ssid = config.sops.secrets.home_ssid;
+  # home_pass = lib.mkString config.sops.secrets.home_pass;
+  # device = "wlp3s0";
 in {
   options = {
     networkModule.enable = lib.mkEnableOption "Enable the custom network module";
@@ -25,44 +25,64 @@ in {
     #   "127.0.0.1" = ["xn--9q8h" "localghost"];
     # };
     networking.wireless.enable = true;
+    networking.wireless.interfaces = [
+      "wlp3s0"
+    ];
+
     networking.wireless.networks = {
-      home_ssid = {
-        psk = null;
-        # home_pass;
+      "${config.sops.secrets.home_ssid.path}" = {
+        psk = config.sops.secrets.home_pass.path;
       };
     };
 
-    networking.useDHCP = true; # Use it GLOBALY
-
-    networking.interfaces.wlp350.useDHCP = true;
-
     networking.useNetworkd = true;
+    systemd.network.enable = true;
     systemd.network.networks."40-wifi" = {
       matchConfig.Name = "wlp3s0";
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
+    networking.useDHCP = false; # Use it GLOBALY
+
+    # sops.secrets.home_ssid = {
+    #   sopsFile = ../../.sops.yaml;
+    #   mode = "0400";
+    # };
+
+    # sops.secrets.home_pass = {
+    #   sopsFile = ../../.sops.yaml;
+    #   mode = "0400";
+    # };
+
+    # boot.kernalModules = [ "brcmfmac"];
+
+    # networking.interfaces.wlp350.useDHCP = true;
+    # networking.useDHCP = true; # Use it GLOBALY
     # systemd.network.networks."wlp3s0" = {
     #   networkConfig.DHCP = "yes";
     # };
-
-    lib.systemd.services.set-wifi-password = {
-      # systemd.services.set-wifi-password = {
-      inherit home_ssid home_pass device pkgs config;
-      description = "Set the wifi password";
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = ''
-          ip link set ${device} up
-          # ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
-          wpa_supplicant -B -i ${device} -c <(wpa_passphrase "$(cat ${home_ssid.path})" "$(cat ${home_pass.path})")
-          dhclient ${device}
-        '';
-        # ${pkgs.networkmanager}/bin/nmcli con mod ${home_ssid} wifi-sec.psk ${home_ssid.psk}
-      };
-      RemainAfterExit = true; ## Not a real option
-    };
+    # systemd.services.set-wifi-password = let
+    #   inherit lib pkgs;
+    #   home_ssid = config.sops.secrets.home_ssid;
+    #   home_pass = pass: lib.mkString pass;
+    #   device = "wlp3s0";
+    # in {
+    #   # systemd.services.set-wifi-password = {
+    #   # inherit home_ssid home_pass device pkgs;
+    #   description = "Set the wifi password";
+    #   wantedBy = ["multi-user.target"];
+    #   after = ["network.target"];
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     ExecStart = ''
+    #       ip link set ${device} up
+    #       # ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
+    #       wpa_supplicant -B -i ${device} -c <(wpa_passphrase "$(cat ${home_ssid.path})" "$(cat ${home_pass.path})")
+    #       dhclient ${device}
+    #     '';
+    #     # ${pkgs.networkmanager}/bin/nmcli con mod ${home_ssid} wifi-sec.psk ${home_ssid.psk}
+    #   };
+    #   # RemainAfterExit = true; ## Not a real option
+    # };
   };
 }
