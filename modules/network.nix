@@ -6,7 +6,7 @@
 }: let
   home_ssid = config.sops.secrets.home_ssid;
   home_pass = lib.mkString config.sops.secrets.home_pass;
-  device = "wlp2s0";
+  device = "wlp3s0";
 in {
   options = {
     networkModule.enable = lib.mkEnableOption "Enable the custom network module";
@@ -38,11 +38,11 @@ in {
 
     networking.useNetworkd = true;
     systemd.network.networks."40-wifi" = {
-      matchConfig.Name = "wlp350";
+      matchConfig.Name = "wlp3s0";
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
-    # systemd.network.networks."wlp350" = {
+    # systemd.network.networks."wlp3s0" = {
     #   networkConfig.DHCP = "yes";
     # };
 
