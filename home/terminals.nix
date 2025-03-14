@@ -34,7 +34,7 @@
         ###########
         ## Fonts ##
         ###########
-        font-size = 12.0;
+        font-size = 13.0;
         font-family-bold = "JetBrains Mono ExtraBold";
         font-family-italic = "JetBrains Mono Italic";
         font-family-bold-italic = "JetBrains Mono ExtraBold Italic";
