@@ -68,7 +68,7 @@ in {
           general = {
             gaps_in = 5;
             gaps_out = 8;
-            border_size = 2;
+            border_size = 1;
             "col.active_border" = accent;
             "col.inactive_border" = inactive;
             resize_on_border = true;
@@ -78,8 +78,7 @@ in {
           decoration = {
             rounding = 3;
             active_opacity = 1.0;
-            inactive_opacity = 1.0;
-
+            inactive_opacity = 0.9;
             shadow = {
               range = 100;
               render_power = 1;
@@ -95,6 +94,33 @@ in {
               "workspaces, 1, 4, shot"
             ];
           };
+          input = {
+            kb_layout = "us";
+            kb_options = "caps:escape";
+            #kb_variant = "colemark";
+            kb_model = "";
+            kb_rules = "";
+            sensitivity = 0;
+            accep_profile = "flat";
+            # force_no_accel = true; ## Can cause hardware->software mouse desync
+            follow_mouse = 2; # 0 = disabled, 1 = cursor- always change to window under curosr, 2 = cursor - cursor & keyboard are 'sep'. clicking will move keyboard always, 3 = cursor focus is ENTIRELY sep. from keyboard - window clicks don't move keyboard
+            # follow_mouse_threshold = 1;
+            focus_on_close = 0; # 0 = focus to next window candidate, 1 = focus to window under cursor
+            repeat_rate = 45;
+            repeat_delay = 350;
+
+            touchpad = {
+              disable_while_typing = true;
+              natural_scroll = true;
+              tap-to-click = false;
+            };
+          };
+          gestures = {
+            workspace_swipe = true;
+            workspace_swipe_fingers = 3;
+            workspace_swipe_distance = 200;
+            workspace_swipe_direction_lock_threshold = 10; # in px, the distance to swipe before direction lock activates (touchpad only).
+          };
           group = {
             "col.border_active" = accent;
             "col.border_inactive" = inactive;
@@ -105,31 +131,17 @@ in {
               text_color = colors.text;
             };
           };
+
+          misc = {
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true; ## splash???????
+            force_default_wallpaper = -1;
+          };
+
           dwindle = {
             pseudotile = true;
             preserve_split = true;
             force_split = 2;
-          };
-          misc = {
-            force_default_wallpaper = -1;
-            disable_hyprland_logo = false;
-          };
-          input = {
-            kb_layout = "us";
-            kb_options = "caps:escape";
-            #kb_variant = "colemark";
-            kb_model = "";
-            kb_rules = "";
-            follow_mouse = 1;
-            sensitivity = 0;
-            touchpad.natural_scroll = true;
-            repeat_rate = 35;
-            repeat_delay = 350;
-          };
-          gestures = {
-            workspace_swipe = true;
-            workspace_swipe_fingers = 3;
-            workspace_swipe_distance = 100;
           };
 
           bind = bind.bind;
