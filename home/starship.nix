@@ -20,7 +20,7 @@
       settings = {
         command_timeout = 10000;
 
-        format = "$username$hostname$os$directory$git_branch$git_commit$git_state$git_status$fill[ ](#767676)$cmd_duration$package$c$cmake$docker_context$dotnet$golang$haskell$lua$meson$mojo$nim$nodejs$rust$zig$jobs\n($sudo)$character";
+        format = "$username$hostname$os $directory$git_branch$git_commit$git_state$git_status$fill[ ](#767676)$cmd_duration$package$c$cmake$docker_context$dotnet$golang$haskell$lua$meson$mojo$nim$nodejs$rust$zig$jobs\n($sudo)$character";
 
         fill = {
           symbol = " ";
