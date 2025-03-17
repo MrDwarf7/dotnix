@@ -52,6 +52,7 @@
       utils.enable = true;
     };
 
+    fishShell.enable = true;
     hypr.enable = true;
 
     languages = {

@@ -35,6 +35,12 @@
         cls = "clear";
         ca = "clear && ls -lah";
         ef = "exec fish";
+        lg = "lazygit";
+        b = "bat";
+        c = "cat";
+        nos = "nh os switch";
+        nhs = "nh home switch";
+
         g = "git";
         gf = "git fetch";
         gst = "git status";
@@ -54,12 +60,6 @@
         gp = "git push";
         gco = "git checkout";
         grv = "git remote -v";
-
-        lg = "lazygit";
-        nos = "nh os switch";
-        nhs = "nh home switch";
-        b = "bat";
-        c = "cat";
       };
       interactiveShellInit = ''
             if test -e starship; and test -x starship
