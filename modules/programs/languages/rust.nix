@@ -19,6 +19,7 @@
       # (rust-bin.selectedLatestNightlyWith (toolchain: toolchain.default.override {
       # }))
       (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
+      rustup
       taplo #toml formatter & lsp
       cargo-watch
       cargo-deny
