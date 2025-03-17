@@ -30,6 +30,7 @@ in {
     #   "127.0.0.1" = ["xn--9q8h" "localghost"];
     # };
     networking.wireless.enable = true;
+    networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
     networking.wireless.interfaces = [
      "${device}"
     ];
