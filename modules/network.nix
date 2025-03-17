@@ -30,7 +30,7 @@ in {
     networking.wireless.enable = true;
     networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
     networking.wireless.interfaces = [
-     "${device}"
+     device
     ];
 
     #### TODO: sops-nix plz.
@@ -38,16 +38,11 @@ in {
     # networking.wireless.environmentFile = config.sops.secrets."wireless.env".path;
     networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
-        "ext:HOME_WIFI_SSID" = {
-            pskRaw = "ext:HOME_WIFI_PASSWORD";
-        };
+            # Generate the set via:
+            # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
+            # and /etc/wpa_supplicant.conf is the file it looks for by default
+            # Saves having to stuff about with sops-nix bs
     };
-    # networking.wireless.networks = {
-    #   "CocaCola" = {
-    #             psk = config.sops.secrets.home_pass;
-    #         };
-    # };
-
     networking.useNetworkd = true;
     systemd.network.enable = true;
     systemd.network.networks."40-wifi" = {
@@ -55,16 +50,15 @@ in {
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
-    # systemd.user.services.mbsync.unitConfig.After = [ "sops-nix.service" ];
-
-    # systemd.services."wpa_supplicant" = {
-    #   after = ["sops-nix.service"];
-    #   wants = ["network-pre.target"];
-    #   before = ["network.target" "systemd-networkd.service"];
-    #   unitConfig = {
-    #     ConditionCapability = "CAP_NET_ADMIN";
-    #   };
-    # };
+    systemd.user.services.mbsync.unitConfig.After = [ "sops-nix.service" ];
+    systemd.services."wpa_supplicant" = {
+      after = ["sops-nix.service"];
+      wants = ["network-pre.target"];
+      before = ["network.target" "systemd-networkd.service"];
+      unitConfig = {
+        ConditionCapability = "CAP_NET_ADMIN";
+      };
+    };
 
     networking.useDHCP = false; # Use it GLOBALY
   };
