@@ -60,6 +60,7 @@ in {
 
   ### Could copy fish-shell.nix as an example for basically most programs, here are some inline
   home.bat.enable = true;
+  home.btop.enable = true;
   # home.yazi.enable = true;
 
   gtk.gtk3.bookmarks = [

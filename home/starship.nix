@@ -14,6 +14,9 @@
       ### enableZshIntegration = true;
       ### enableFishIntegration = true;
 
+      # Can also use this, to incrementally adopt home-manager handling
+      # settings = pkgs.lib.importTOML ./starship.toml;
+
       settings = {
         command_timeout = 10000;
 

@@ -15,7 +15,7 @@
     XDG_CACHE_HOME = "/home/dwarf/.xdg/cache";
     XDG_CACHE_LOCAL_HOME = "/home/dwarf/.xdg/local";
     DOT_DIR = "/home/dwarf/dotnix";
-    STARSHIP_CONFIG = "/home/dwarf/dotfiles/.config/starship/starship.toml";
+    # STARSHIP_CONFIG = "/home/dwarf/.config/starship/starship.toml";
 
     # Locales xdg dirs
     XDG_DESKTOP_DIR = "$HOME/Desktop";

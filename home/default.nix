@@ -4,6 +4,7 @@
     ./moxide
 
     ./bat.nix
+    ./btop.nix
     # ./default.nix
     ./fish-shell.nix
     ./gh.nix
