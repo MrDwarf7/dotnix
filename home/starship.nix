@@ -35,7 +35,7 @@
           vimcmd_visual_symbol = " [❯](yellow)";
         };
 
-        "env_var.VIMSHELL" = {
+        env_var.VIMSHELL = {
           format = "[$env_value]($style)";
           style = "green italic";
         };
