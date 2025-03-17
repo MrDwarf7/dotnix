@@ -6,7 +6,9 @@
   ...
 }: let
   home_ssid = config.sops.secrets.home_ssid.path;
-  home_pass = config.sops.secrets.home_pass.path;
+  # home_pass = builtins.toString (builtins.readFile config.sops.secrets.home_pass.path);
+        # config.sops.secrets.home_pass.path;
+
   device = "wlp3s0";
 in {
   imports = [
@@ -38,15 +40,10 @@ in {
     #### TODO: sops-nix plz.
     networking.wireless.secretsFile = config.sops.defaultSopsFile;
     networking.wireless.networks = {
-        "${home_ssid}" = {
-          psk = home_pass;
+        "CocaCola" = {
+        psk = "ext:home_pass";
+                    # "/run/secrets-for-users/home_ssid";
         };
-      # "CocaCola" = {
-      #   psk = "/run/secrets/wifi/CocaCola";
-      # };
-      # "${config.sops.secrets.home_ssid.key}" = {
-      #   psk = config.sops.secrets.home_pass;
-      # };
     };
 
     networking.useNetworkd = true;
