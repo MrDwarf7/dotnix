@@ -10,6 +10,8 @@
 }: {
   imports = [
     (import ./hardware-configuration.nix {inherit config lib pkgs modulesPath inputs;})
+    # Testing if we can generate our OWN man-db pages instead of man-db cache doing it (which is slow as)
+    # (import ./documentation.nix {inherit pkgs config lib;})
   ];
 
   bootloader = {
