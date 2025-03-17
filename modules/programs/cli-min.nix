@@ -16,6 +16,7 @@
 
     environment.systemPackages = with pkgs; [
       bat
+      btop
       cachix
       clang
       delta # Better git diff
