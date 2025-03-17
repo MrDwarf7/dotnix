@@ -27,7 +27,7 @@
 
   users.users.dwarf = {
     isNormalUser = true;
-    description = "Dwarrf";
+    description = "Dwarf";
     extraGroups = ["wheel" "networkmanager"]; ## NOTE: netowrkmanager // systemd-networkd // iwp // wpa_supplicant
   };
 

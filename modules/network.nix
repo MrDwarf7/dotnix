@@ -34,8 +34,8 @@ in {
       "wlp3s0"
     ];
 
+    #### TODO: sops-nix plz.
     networking.wireless.secretsFile = config.sops.defaultSopsFile;
-
     networking.wireless.networks = {
       "CocaCola" = {
         psk = "/run/secrets/wifi/CocaCola";
