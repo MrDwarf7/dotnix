@@ -5,9 +5,9 @@
   inputs,
   ...
 }: let
-  home_ssid = config.sops.secrets.home_ssid;
-  home_pass = lib.ReadFile config.sops.secrets.home_pass.path;
-  # device = "wlp3s0";
+  home_ssid = config.sops.secrets.home_ssid.path;
+  home_pass = config.sops.secrets.home_pass.path;
+  device = "wlp3s0";
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -31,15 +31,18 @@ in {
     # };
     networking.wireless.enable = true;
     networking.wireless.interfaces = [
-      "wlp3s0"
+     "${device}"
     ];
 
     #### TODO: sops-nix plz.
     networking.wireless.secretsFile = config.sops.defaultSopsFile;
     networking.wireless.networks = {
-      "CocaCola" = {
-        psk = "/run/secrets/wifi/CocaCola";
-      };
+        "${home_ssid}" = {
+          psk = home_pass;
+        };
+      # "CocaCola" = {
+      #   psk = "/run/secrets/wifi/CocaCola";
+      # };
       # "${config.sops.secrets.home_ssid.key}" = {
       #   psk = config.sops.secrets.home_pass;
       # };
@@ -48,7 +51,7 @@ in {
     networking.useNetworkd = true;
     systemd.network.enable = true;
     systemd.network.networks."40-wifi" = {
-      matchConfig.Name = "wlp3s0";
+      matchConfig.Name = "${device}";
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
