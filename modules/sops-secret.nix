@@ -17,6 +17,7 @@
     };
   };
 
+  ### TODO: Ensure this is working correctly?????
   config = lib.mkIf config.sopsSecrets.enable {
     sops.defaultSopsFile = ../secrets/wifi.yaml;
     sops.validateSopsFiles = true;
@@ -30,8 +31,12 @@
     # "../../../.config/sops/age/keys.txt";
 
     sops.secrets = {
-      home_ssid = {};
-      home_pass = {};
+      home_ssid = {
+          neededForUsers = true;
+      };
+      home_pass = {
+          neededForUsers = true;
+      };
     };
   };
 }
