@@ -6,8 +6,7 @@
   ...
 }: let
   home_ssid = config.sops.secrets.home_ssid.path;
-  # home_pass = builtins.toString (builtins.readFile config.sops.secrets.home_pass.path);
-        # config.sops.secrets.home_pass.path;
+  home_pass = config.sops.secrets.home_pass.path;
 
   device = "wlp3s0";
 in {
@@ -40,9 +39,8 @@ in {
     #### TODO: sops-nix plz.
     networking.wireless.secretsFile = config.sops.defaultSopsFile;
     networking.wireless.networks = {
-        "CocaCola" = {
-        psk = "ext:home_pass";
-                    # "/run/secrets-for-users/home_ssid";
+        "${home_ssid}" = {
+        psk = home_pass;
         };
     };
 
@@ -63,46 +61,5 @@ in {
     };
 
     networking.useDHCP = false; # Use it GLOBALY
-
-    # sops.secrets.home_ssid = {
-    #   sopsFile = ../../.sops.yaml;
-    #   mode = "0400";
-    # };
-
-    # sops.secrets.home_pass = {
-    #   sopsFile = ../../.sops.yaml;
-    #   mode = "0400";
-    # };
-
-    # boot.kernalModules = [ "brcmfmac"];
-
-    # networking.interfaces.wlp350.useDHCP = true;
-    # networking.useDHCP = true; # Use it GLOBALY
-    # systemd.network.networks."wlp3s0" = {
-    #   networkConfig.DHCP = "yes";
-    # };
-    # systemd.services.set-wifi-password = let
-    #   inherit lib pkgs;
-    #   home_ssid = config.sops.secrets.home_ssid;
-    #   home_pass = pass: lib.mkString pass;
-    #   device = "wlp3s0";
-    # in {
-    #   # systemd.services.set-wifi-password = {
-    #   # inherit home_ssid home_pass device pkgs;
-    #   description = "Set the wifi password";
-    #   wantedBy = ["multi-user.target"];
-    #   after = ["network.target"];
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #     ExecStart = ''
-    #       ip link set ${device} up
-    #       # ${pkgs.networkmanager}/bin/nmcli con mod "$(cat ${home_ssid.path})" wifi-sec.psk "$(cat ${home_pass.path})"
-    #       wpa_supplicant -B -i ${device} -c <(wpa_passphrase "$(cat ${home_ssid.path})" "$(cat ${home_pass.path})")
-    #       dhclient ${device}
-    #     '';
-    #     # ${pkgs.networkmanager}/bin/nmcli con mod ${home_ssid} wifi-sec.psk ${home_ssid.psk}
-    #   };
-    #   # RemainAfterExit = true; ## Not a real option
-    # };
   };
 }

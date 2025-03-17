@@ -24,7 +24,6 @@
 
     programs.direnv = {
       enable = true;
-      # enableFishIntegration = true;
     };
 
     programs.fish = {
@@ -67,6 +66,8 @@
                 commandline -f repaint
             end
         fish_vi_key_bindings
+        set -gx fish_greeting # Disable the greeting thing
+        set -Ux CARAPACE_BRIDGES 'all'
       '';
 
       functions = {

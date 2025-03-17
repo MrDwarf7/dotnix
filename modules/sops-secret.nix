@@ -33,9 +33,17 @@
     sops.secrets = {
       home_ssid = {
           neededForUsers = true;
+          path = "/run/secrets/home_ssid";
+          mode = "0400";
+          owner = "root";
+          group = "root";
       };
       home_pass = {
           neededForUsers = true;
+          path = "/run/secrets/home_pass";
+          mode = "0400";
+          owner = "root";
+          group = "root";
       };
     };
   };
