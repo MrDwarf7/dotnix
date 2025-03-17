@@ -5,9 +5,6 @@
   inputs,
   ...
 }: let
-  home_ssid = config.sops.secrets.home_ssid.path;
-  home_pass = config.sops.secrets.home_pass.path;
-
   device = "wlp3s0";
 in {
   imports = [
@@ -37,12 +34,19 @@ in {
     ];
 
     #### TODO: sops-nix plz.
-    networking.wireless.secretsFile = config.sops.defaultSopsFile;
+    networking.wireless.secretsFile = config.sops.secrets."wireless.env".path;
+    # networking.wireless.environmentFile = config.sops.secrets."wireless.env".path;
+    networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
-        "${home_ssid}" = {
-        psk = home_pass;
+        "ext:HOME_WIFI_SSID" = {
+            pskRaw = "ext:HOME_WIFI_PASSWORD";
         };
     };
+    # networking.wireless.networks = {
+    #   "CocaCola" = {
+    #             psk = config.sops.secrets.home_pass;
+    #         };
+    # };
 
     networking.useNetworkd = true;
     systemd.network.enable = true;
@@ -51,14 +55,16 @@ in {
       networkConfig.DHCP = "yes"; # Use it for this specific interface
     };
 
-    systemd.services."wpa_supplicant" = {
-      after = ["sops-nix.service"];
-      wants = ["network-pre.target"];
-      before = ["network.target" "systemd-networkd.service"];
-      unitConfig = {
-        ConditionCapability = "CAP_NET_ADMIN";
-      };
-    };
+    # systemd.user.services.mbsync.unitConfig.After = [ "sops-nix.service" ];
+
+    # systemd.services."wpa_supplicant" = {
+    #   after = ["sops-nix.service"];
+    #   wants = ["network-pre.target"];
+    #   before = ["network.target" "systemd-networkd.service"];
+    #   unitConfig = {
+    #     ConditionCapability = "CAP_NET_ADMIN";
+    #   };
+    # };
 
     networking.useDHCP = false; # Use it GLOBALY
   };
