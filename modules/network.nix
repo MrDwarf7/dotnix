@@ -49,7 +49,7 @@ in {
 
     #### TODO: sops-nix plz.
     # networking.wireless.secretsFile = config.sops.defaultSopsFile;
-    networking.wireless.userControlled.enable = true;
+    # networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
       "CocaCola" = {
         psk = "$(cat ${pass})";
