@@ -20,7 +20,7 @@
   ### TODO: Ensure this is working correctly?????
   config = lib.mkIf config.sopsSecrets.enable {
     sops.defaultSopsFormat = "yaml";
-    sops.validateSopsFiles = true;
+    sops.validateSopsFiles = false;
 
     sops.defaultSopsFile = ./../secrets/secrets.yaml;
     # sops.age.keyFile = "/home/dwarf/.config/sops/age/keys.txt";
@@ -41,12 +41,6 @@
     sops.templates = {
       "home_wifi_ssid".content = ''${config.sops.placeholder."home_wifi/cocacola/ssid"}'';
       "home_wifi_pass".content = ''${config.sops.placeholder."home_wifi/cocacola/pass"}'';
-      "home_wifi_test".content = ''
-        network = {
-          ssid = "${config.sops.placeholder."home_wifi/cocacola/ssid"}";
-          #psk = "${config.sops.placeholder."home_wifi/cocacola/pass"}";
-        }
-      '';
     };
   };
 }

@@ -48,12 +48,10 @@ in {
     #   device
     # ];
 
-    #### TODO: sops-nix plz.
-    # networking.wireless.secretsFile = config.sops.defaultSopsFile;
-    # networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
       "CocaCola" = {
-        psk = "$(cat ${pass})";
+        # psk = "$(cat ${pass})"; ## Old way of testing this out
+        psk = ''${pass}'';
       };
     };
     networking.useNetworkd = true;

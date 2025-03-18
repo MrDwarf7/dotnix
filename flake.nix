@@ -64,6 +64,7 @@
   }: let
     args = {
       inherit self;
+      inherit (inputs) outputs;
       inherit (nixpkgs) lib;
       pkgs = import nixpkgs {};
     };
