@@ -55,7 +55,7 @@ in {
 
     systemd.services."wpa_supplicant" = {
       serviceConfig = {
-        ExecStart = lib.mkForce "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c ${config.sops.templates."home_wifi_test".content} ";
+        ExecStart = lib.mkForce "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf";
       };
     };
 
