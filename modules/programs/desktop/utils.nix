@@ -14,6 +14,8 @@
       pika-backup
       resources
       nautilus
+      # Testing
+      networkmanager
       networkmanagerapplet
       zathura
       # timeshift

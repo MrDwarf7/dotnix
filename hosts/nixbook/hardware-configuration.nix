@@ -26,6 +26,12 @@
     ${pkgs.systemd}/bin/systemctl restart wpa_supplicant.service
   '';
 
+  # testing
+  hardware.enableAllFirmware = true;
+  boot.blacklistedKernelModules = [
+    "brcmfmac"
+  ];
+
   ## Make kernal bootup FAST! -- may also leak your data lmao
   # mitigations=off
   boot.kernelParams = [
