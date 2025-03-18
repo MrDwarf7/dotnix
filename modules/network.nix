@@ -54,6 +54,13 @@ in {
     systemd.network.enable = true;
 
     systemd.services."wpa_supplicant" = {
+      enable = true;
+      after = ["sops-nix.service"];
+      wants = ["network-pre.target"];
+      before = ["network.target" "systemd-networkd.service"];
+      unitConfig = {
+        ConditionCapability = "CAP_NET_ADMIN";
+      };
       serviceConfig = {
         ExecStart = lib.mkForce "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf";
       };

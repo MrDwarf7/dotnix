@@ -15,6 +15,8 @@
       resources
       nautilus
       # Testing
+      wpa_supplicant
+      wpa_supplicant_gui
       networkmanager
       networkmanagerapplet
       zathura
