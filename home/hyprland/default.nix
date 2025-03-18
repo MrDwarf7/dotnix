@@ -101,7 +101,7 @@ in {
             kb_model = "";
             kb_rules = "";
             sensitivity = 0;
-            # accel_profile = "flat"; ## Having this off will use libinput's default
+            accel_profile = "adaptive"; ## Having this off will use libinput's default
             # force_no_accel = true; ## Can cause hardware->software mouse desync
             follow_mouse = 2; # 0 = disabled, 1 = cursor- always change to window under curosr, 2 = cursor - cursor & keyboard are 'sep'. clicking will move keyboard always, 3 = cursor focus is ENTIRELY sep. from keyboard - window clicks don't move keyboard
             # follow_mouse_threshold = 1;
