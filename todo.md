@@ -5,7 +5,6 @@
 - networkctl doesn't autostart
 - have to call Hyprland manually on login
 - Waybar not starting automatically
-- Setting up Garbage Collection for Nix's generation system
 - Seeing up BTRFS scrubbing (and ensuring it's being done correctly)
 - Setting up NixOS backups 
 

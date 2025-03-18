@@ -31,5 +31,7 @@
       #   target = pkgs.lib.importTOML ./plugins.toml;
       # };
     };
+
+    ## TODO: Need to add something that will basically take the existing `package.toml` and run ya -i && ya -u to install the plugins, ideally HM doesn't break it
   };
 }
