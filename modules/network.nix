@@ -36,6 +36,7 @@ in {
       wifi = {
         powersave = true;
         backend = "wpa_supplicant";
+        scanRandMacAddress = false;
       };
     };
 
