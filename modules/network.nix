@@ -29,9 +29,9 @@ in {
     # };
     networking.wireless.enable = true;
     networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
-    networking.wireless.interfaces = [
-      device
-    ];
+    # networking.wireless.interfaces = [
+    #   device
+    # ];
 
     #### TODO: sops-nix plz.
     networking.wireless.secretsFile = config.sops.secrets."wireless.env".path;
