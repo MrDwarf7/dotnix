@@ -77,7 +77,7 @@ in {
           };
           decoration = {
             rounding = 3;
-            active_opacity = 0.9;
+            active_opacity = 0.95;
             inactive_opacity = 0.8;
             shadow = {
               range = 100;
