@@ -34,7 +34,7 @@
         max-jobs = "auto";
         log-lines = 20;
 
-        subsituters = [
+        substituters = [
           "https://cache.nixos.org"
         ];
 
