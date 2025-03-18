@@ -86,5 +86,7 @@
       # zellij # Better tmux alternative
       # zip # Compress files
     ];
+
+    programs.nix-ld.enable = true;
   };
 }

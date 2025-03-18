@@ -12,10 +12,15 @@
   alejandra = import (fetchTarball {
     url = "https://github.com/kamadorueda/alejandra/archive/3.1.0.tar.gz";
   }) {inherit pkgs;};
+
+  agenix = import (fetchTarball {
+    url = "https://github.com/ryantm/agenix/archive/0.15.0.tar.gz";
+  }) {inherit pkgs;};
 in
   pkgs.mkShell {
     buildInputs = with pkgs;
       [
+        agenix-cli
         rustToolchain # Rust stable toolchain (cargo, clippy, rustfmt, etc.)
         nixd # Nix language server
         fish # Fish shell

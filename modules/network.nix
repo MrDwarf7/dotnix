@@ -23,6 +23,20 @@ in {
 
   config = lib.mkIf config.networkModule.enable {
     networking.hostName = config.networkModule.hostName;
+
+    # Drastically slows down boot times for basically no benefit
+    systemd.services.NetworkManager-wait-online.enable = false;
+    networking.dhcpcd.extraConfig = "nohook resolve.conf";
+
+    networking.networkmanager = {
+      enable = true;
+      unmanaged = ["docker0"];
+      wifi = {
+        powersave = true;
+        backend = "wpa_supplicant";
+      };
+    };
+
     # networking.networkmanager.enable = true;
     # Allow for `http://👻` thx to @elmo@chaos.social
     # networking.hosts = {
@@ -53,18 +67,20 @@ in {
     networking.useNetworkd = true;
     systemd.network.enable = true;
 
-    systemd.services."wpa_supplicant" = {
-      enable = true;
-      after = ["sops-nix.service"];
-      wants = ["network-pre.target"];
-      before = ["network.target" "systemd-networkd.service"];
-      unitConfig = {
-        ConditionCapability = "CAP_NET_ADMIN";
-      };
-      serviceConfig = {
-        ExecStart = lib.mkForce "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf";
-      };
-    };
+    # systemd.services."wpa_supplicant" = {
+    #   enable = true;
+    #   after = ["sops-nix.service"];
+    #   wants = ["network-pre.target"];
+    #   before = ["network.target" "systemd-networkd.service"];
+    #   unitConfig = {
+    #     ConditionCapability = "CAP_NET_ADMIN";
+    #   };
+    #   serviceConfig = {
+    #     ExecStart = lib.mkForce ''          ip link set ${device} up &&\
+    #               ${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf
+    #     '';
+    #   };
+    # };
 
     # systemd.network.networks."40-wifi" = {
     #   matchConfig.Name = "${device}";

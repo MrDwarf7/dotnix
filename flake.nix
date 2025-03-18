@@ -14,6 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = ""; # Don't download the darwin deps
+
     ags.url = "github:aylur/ags";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -49,16 +53,21 @@
     };
   };
 
-  outputs = {
-    # self,
+  outputs = inputs @ {
+    self,
     nixpkgs,
     disko,
     muxbar,
     ags,
     spicetify-nix,
     ...
-  } @ inputs: let
-    # inherit (self) outputs;
+  }: let
+    args = {
+      inherit self;
+      inherit (nixpkgs) lib;
+      pkgs = import nixpkgs {};
+    };
+    lib = import ./lib args;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -82,6 +91,9 @@
         ./hosts/nixbook/configuration.nix
         disko.nixosModules.disko
         inputs.home-manager.nixosModules.home-manager
+        {
+          environment.systemPackages = [inputs.agenix.packages.x86_64-linux.default];
+        }
       ];
     };
     # homeConfigurations."dwarf@nixbook" = inputs.home-manager.lib.homeManagerConfiguration {
