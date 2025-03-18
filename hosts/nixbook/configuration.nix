@@ -31,6 +31,9 @@
     isNormalUser = true;
     description = "Dwarf";
     extraGroups = ["wheel" "networkmanager"]; ## NOTE: netowrkmanager // systemd-networkd // iwp // wpa_supplicant
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUEUVsH40rXIRsjeBdyQVWN74zzcbpkm8rP0VulUsxz dwarf@THEYETI"
+    ];
   };
 
   programs.fish.enable = true;

@@ -29,15 +29,19 @@ in {
     # };
     networking.wireless.enable = true;
     networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
+    networking.useDHCP = true; # Use it GLOBALY
     # networking.wireless.interfaces = [
     #   device
     # ];
 
     #### TODO: sops-nix plz.
-    networking.wireless.secretsFile = config.sops.secrets."wireless.env".path;
-    # networking.wireless.environmentFile = config.sops.secrets."wireless.env".path;
+    networking.wireless.secretsFile = config.sops.defaultSopsFile;
     networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
+      # "CocaCola" = {
+      #   # "${config.sops.templates."home_wifi_ssid".content}" = {
+      #   psk = ''${config.sops.templates."home_wifi_pass".content}'';
+      # };
       # Generate the set via:
       # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
       # and /etc/wpa_supplicant.conf is the file it looks for by default
@@ -48,6 +52,13 @@ in {
     };
     networking.useNetworkd = true;
     systemd.network.enable = true;
+
+    systemd.services."wpa_supplicant" = {
+      serviceConfig = {
+        ExecStart = lib.mkForce "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c ${config.sops.templates."home_wifi_test".content} ";
+      };
+    };
+
     # systemd.network.networks."40-wifi" = {
     #   matchConfig.Name = "${device}";
     #   networkConfig.DHCP = "yes"; # Use it for this specific interface
@@ -66,12 +77,11 @@ in {
     #   unitConfig = {
     #     ConditionCapability = "CAP_NET_ADMIN";
     #   };
+
     ## Need to call lib.mkForce on ExecStart to override the default if using a hardwritten /etc/wpa_supplicant.conf instead of sops
     #   serviceConfig = {
     #     ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf ";
     #   };
     # };
-
-    networking.useDHCP = true; # Use it GLOBALY
   };
 }

@@ -71,6 +71,11 @@ in {
 
                 # "/home/dwarf" = {};
 
+                # "/var" = {
+                #   mountpoint = "/var";
+                #   mountOptions = attrs;
+                # };
+
                 "/var-log" = {
                   mountpoint = "/var/log";
                   mountOptions = attrs;
