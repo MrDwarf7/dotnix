@@ -42,6 +42,9 @@ in {
       # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
       # and /etc/wpa_supplicant.conf is the file it looks for by default
       # Saves having to stuff about with sops-nix bs
+      "ext:HOME_WIFI_SSID" = {
+        pskRaw = "ext:HOME_WIFI_PASSWORD";
+      };
     };
     networking.useNetworkd = true;
     systemd.network.enable = true;
@@ -63,6 +66,7 @@ in {
     #   unitConfig = {
     #     ConditionCapability = "CAP_NET_ADMIN";
     #   };
+    ## Need to call lib.mkForce on ExecStart to override the default if using a hardwritten /etc/wpa_supplicant.conf instead of sops
     #   serviceConfig = {
     #     ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf ";
     #   };
