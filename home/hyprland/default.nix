@@ -77,8 +77,8 @@ in {
           };
           decoration = {
             rounding = 3;
-            active_opacity = 1.0;
-            inactive_opacity = 0.9;
+            active_opacity = 0.9;
+            inactive_opacity = 0.8;
             shadow = {
               range = 100;
               render_power = 1;
@@ -106,8 +106,8 @@ in {
             follow_mouse = 2; # 0 = disabled, 1 = cursor- always change to window under curosr, 2 = cursor - cursor & keyboard are 'sep'. clicking will move keyboard always, 3 = cursor focus is ENTIRELY sep. from keyboard - window clicks don't move keyboard
             # follow_mouse_threshold = 1;
             focus_on_close = 0; # 0 = focus to next window candidate, 1 = focus to window under cursor
-            repeat_rate = 45;
-            repeat_delay = 350;
+            repeat_rate = 55; # Repeat rate of the keypress being taken
+            repeat_delay = 300; # Delay before the keypress starts repeating
 
             touchpad = {
               disable_while_typing = true;
