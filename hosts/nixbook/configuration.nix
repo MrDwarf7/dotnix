@@ -90,6 +90,8 @@
 
   services.power-profiles-daemon.enable = true;
 
+  sshModule.enable = true;
+
   # virtualisation.enable = true; ## Not 100% sure this is the right option name
 
   mime = {

@@ -30,7 +30,7 @@ in {
     networking.wireless.enable = true;
     networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
     networking.wireless.interfaces = [
-     device
+      device
     ];
 
     #### TODO: sops-nix plz.
@@ -38,25 +38,32 @@ in {
     # networking.wireless.environmentFile = config.sops.secrets."wireless.env".path;
     networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
-            # Generate the set via:
-            # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
-            # and /etc/wpa_supplicant.conf is the file it looks for by default
-            # Saves having to stuff about with sops-nix bs
+      # Generate the set via:
+      # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
+      # and /etc/wpa_supplicant.conf is the file it looks for by default
+      # Saves having to stuff about with sops-nix bs
     };
     networking.useNetworkd = true;
     systemd.network.enable = true;
-    systemd.network.networks."40-wifi" = {
-      matchConfig.Name = "${device}";
-      networkConfig.DHCP = "yes"; # Use it for this specific interface
-    };
+    # systemd.network.networks."40-wifi" = {
+    #   matchConfig.Name = "${device}";
+    #   networkConfig.DHCP = "yes"; # Use it for this specific interface
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -c/etc/wpa_supplicant.conf -i${device} -Dnl80211,wext";
+    #   };
+    # };
 
-    systemd.user.services.mbsync.unitConfig.After = [ "sops-nix.service" ];
+    systemd.user.services.mbsync.unitConfig.After = ["sops-nix.service"];
     systemd.services."wpa_supplicant" = {
+      enable = true;
       after = ["sops-nix.service"];
       wants = ["network-pre.target"];
       before = ["network.target" "systemd-networkd.service"];
       unitConfig = {
         ConditionCapability = "CAP_NET_ADMIN";
+      };
+      serviceConfig = {
+        ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -c/etc/wpa_supplicant.conf -i${device} -Dnl80211,wext";
       };
     };
 

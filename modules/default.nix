@@ -28,6 +28,7 @@
       config = config;
       inputs = inputs;
     })
+    ./ssh.nix
     ./xdg.nix
   ];
 }
