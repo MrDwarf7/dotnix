@@ -6,6 +6,7 @@
   ...
 }: let
   device = "wlp3s0";
+  pass = config.sops.secrets."home_wifi/cocacola/pass".path;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -35,20 +36,19 @@ in {
     # ];
 
     #### TODO: sops-nix plz.
-    networking.wireless.secretsFile = config.sops.defaultSopsFile;
+    # networking.wireless.secretsFile = config.sops.defaultSopsFile;
     networking.wireless.userControlled.enable = true;
     networking.wireless.networks = {
-      # "CocaCola" = {
-      #   # "${config.sops.templates."home_wifi_ssid".content}" = {
-      #   psk = ''${config.sops.templates."home_wifi_pass".content}'';
-      # };
+      "CocaCola" = {
+        # "${config.sops.templates."home_wifi_ssid".content}" = {
+        psk = "$(cat ${pass})";
+      };
       # Generate the set via:
       # sudo wpa_passphrase "YourSSID" "YourPassword" > /etc/wpa_supplicant.conf
-      # and /etc/wpa_supplicant.conf is the file it looks for by default
-      # Saves having to stuff about with sops-nix bs
-      "ext:HOME_WIFI_SSID" = {
-        pskRaw = "ext:HOME_WIFI_PASSWORD";
-      };
+
+      # "ext:HOME_WIFI_SSID" = {
+      #   pskRaw = "ext:HOME_WIFI_PASSWORD";
+      # };
     };
     networking.useNetworkd = true;
     systemd.network.enable = true;
