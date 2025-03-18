@@ -60,7 +60,7 @@
       vim
       wezterm
       wget
-      yazi
+      yazi-unwrapped
       zellij
       zip
       zoxide

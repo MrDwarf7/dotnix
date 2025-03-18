@@ -24,6 +24,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nix-yazi-plugins = {
+    #   url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     muxbar = {
       url = "github:dlurak/muxbar";
       inputs.nixpkgs.follows = "nixpkgs";

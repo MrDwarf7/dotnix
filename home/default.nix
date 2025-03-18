@@ -21,7 +21,7 @@
     ./terminals.nix
     ./tmux.nix
     ./waybar.nix
-    # ./yazi.nix
+    ./yazi
     ./zathura.nix
   ];
 }

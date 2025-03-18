@@ -46,6 +46,7 @@ in {
   home.terminals.enable = true;
   home.tmux.enable = true;
   home.waybar.enable = true;
+  home.yazi.enable = true;
   home.zathura.enable = true;
   # home.zshShell.enable = true; ## Have to move it later
   programs.direnv = {

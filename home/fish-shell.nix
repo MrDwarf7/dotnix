@@ -26,6 +26,10 @@
       enable = true;
     };
 
+    programs.yazi = {
+      enableFishIntegration = true;
+    };
+
     programs.fish = {
       enable = true;
       shellAliases = {
