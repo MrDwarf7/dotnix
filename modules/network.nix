@@ -63,10 +63,10 @@ in {
         ConditionCapability = "CAP_NET_ADMIN";
       };
       serviceConfig = {
-        ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -c/etc/wpa_supplicant.conf -i${device} -Dnl80211,wext";
+        ExecStart = "${pkgs.wpa_supplicant}/sbin/wpa_supplicant -B -i ${device} -c /etc/wpa_supplicant.conf ";
       };
     };
 
-    networking.useDHCP = false; # Use it GLOBALY
+    networking.useDHCP = true; # Use it GLOBALY
   };
 }
