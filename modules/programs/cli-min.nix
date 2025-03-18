@@ -8,7 +8,6 @@
   options = {
     program.cliMin.enable = lib.mkEnableOption "Enable minimal cli programs";
   };
-  
 
   config = lib.mkIf config.program.cliMin.enable {
     nixpkgs.overlays = [
