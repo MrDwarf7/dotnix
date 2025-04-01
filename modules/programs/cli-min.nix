@@ -39,6 +39,7 @@
       jujutsu # Weider, wilder Git alternative
       just # Rust based task runner
       lazygit
+      linux-firmware
       lsof # List Of Open Files
       neovim
       ouch # A CLI tool for compress & decompressing files and dir

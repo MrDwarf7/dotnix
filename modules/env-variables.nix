@@ -1,7 +1,7 @@
 {
   environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    EDITOR = "vim";
+    VISUAL = "vim";
     PAGER = "less";
     SHELL = "fish";
 
