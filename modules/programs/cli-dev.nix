@@ -11,10 +11,36 @@
 
   config = lib.mkIf config.program.cliDev.enable {
     environment.systemPackages = with pkgs; [
-      nixd
       alejandra
+      bc
+      bison
+      # clang_16
+      clang_multi
+      # clang-tools_16
+      cmake
+      # debootstrap
+      elfutils
+      flex
+      gcc
+      gdb
       gh
       git
+      git
+      gnumake
+      libclang
+      # lld_16
+      # llvmPackages_16.libllvm
+      # makeninja
+      meson
+      ncurses
+      ninja
+      nixd
+      openssl
+      # pahole
+      perl
+      python3
+      # qemu_full
+      stdenv
     ];
   };
 }

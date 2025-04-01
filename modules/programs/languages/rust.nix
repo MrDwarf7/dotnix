@@ -22,6 +22,7 @@
       rustup
       taplo #toml formatter & lsp
       cargo-watch
+      cargo-make
       cargo-deny
       cargo-audit
       cargo-update

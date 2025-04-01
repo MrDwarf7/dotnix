@@ -43,6 +43,8 @@
         c = "cat";
         nos = "nh os switch";
         nhs = "nh home switch";
+        ma = "makers";
+        aa = "jj";
 
         g = "git";
         gf = "git fetch";
