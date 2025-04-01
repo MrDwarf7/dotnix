@@ -36,6 +36,9 @@
   # mitigations=off
   boot.kernelParams = [
     "hid_apple.swap_fn_leftctrl=1"
+    # "quiet"
+    # "loglevel=3"
+    "ieee80211.debug=0"
   ];
 
   networking.useDHCP = lib.mkDefault true;
