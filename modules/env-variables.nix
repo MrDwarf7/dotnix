@@ -1,10 +1,9 @@
 {
   environment.variables = {
-    EDITOR = "vim";
-    VISUAL = "vim";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     PAGER = "less";
     SHELL = "fish";
-
     FLAKE = "/home/dwarf/dotnix";
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
