@@ -74,6 +74,10 @@
         fish_vi_key_bindings
         set -gx fish_greeting # Disable the greeting thing
         set -Ux CARAPACE_BRIDGES 'all'
+        set -gx HOME_PROFILE true
+        if uwsm check may-start && uwsm select; then
+            exec uwsm start default
+        end
       '';
 
       functions = {
