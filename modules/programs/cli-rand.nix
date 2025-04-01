@@ -85,6 +85,7 @@
       # yazi # Better ranger/vifm alternative
       # zellij # Better tmux alternative
       # zip # Compress files
+      vesktop
     ];
 
     programs.nix-ld.enable = true;
