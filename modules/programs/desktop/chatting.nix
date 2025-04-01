@@ -12,7 +12,7 @@
     environment.systemPackages = with pkgs;
       [
         # vencord
-        # vesktop
+        vesktop
         # zulip
         # element-desktop
         discord

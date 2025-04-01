@@ -57,7 +57,30 @@
         echo "Screen rotated $1 (ROT=$ROT)"
       '')
     ];
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+        enable = true;
+        withUWSM = true;
+        xwayland.enable = true;
+    };
+    programs.uwsm.enable = true;
+    services.displayManager.ly = {
+        enable = true;
+        settings = {
+            wayland_cmd = "Hyprland";
+        };
+        # settings = {
+        # };
+    };
+    services.xserver.displayManager.gdm.enable = false;
+    services.xserver.enable = false;
+    services.displayManager = {
+        enable = true;
+        # execCmd = "${pkgs.ly}/bin/ly";
+    };
+
+
+
+
     services.gvfs.enable = true;
 
     security.wrappers.wshowkeys = {
