@@ -1,3 +1,10 @@
+# For using the 'nix repl'
+# run
+# nix repl
+# then
+# :l <nixpkgs> 
+# This will 'load' the nixpkgs into the repl
+# then you can use builtins.<TAB> to see all the builtins functions etc.
 {
   description = ''
     A flake for my NixOS configuration.
@@ -25,9 +32,55 @@
     };
 
     # nix-yazi-plugins = {
-    #   url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
+    #   url = "github:lordkekz/nix-yazi-plugins?ref=main";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    # TODO: Make this a sub-flake so we don't have like 8+ yazi plugins in input block lol
+    yazi-plugins = {
+        url = "github:yazi-rs/plugins?ref=main";
+        flake = false;
+    };
+
+    glow = {
+        url = "github:Reledia/glow.yazi";
+        flake = false;
+    };
+
+    hexyl = {
+        url = "github:Reledia/hexyl.yazi";
+        flake = false;
+    };
+
+    miller = {
+        url = "github:Reledia/miller.yazi";
+        flake = false;
+    };
+
+    rich-preview = {
+        url = "github:AnirudhG07/rich-preview.yazi";
+        flake = false;
+    };
+
+    ouch = {
+        url = "github:ndtoan96/ouch.yazi";
+        flake = false;
+    };
+
+    starship = {
+        url = "github:Rolv-Apneseth/starship.yazi";
+        flake = false;
+    };
+
+    relative-motions = {
+        url = "github:dedukun/relative-motions.yazi";
+        flake = false;
+    };
+
+    eza-preview = {
+        url = "github:sharklasers996/eza-preview.yazi";
+        flake = false;
+    };
 
     muxbar = {
       url = "github:dlurak/muxbar";
@@ -69,7 +122,7 @@
   }: let
     args = {
       inherit self;
-      inherit (inputs) outputs;
+      # inherit (inputs) outputs;
       inherit (nixpkgs) lib;
       pkgs = import nixpkgs {};
     };
