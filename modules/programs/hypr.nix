@@ -3,7 +3,11 @@
   lib,
   config,
   ...
-}: {
+}: 
+let
+    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+in
+{
   options = {
     program.hypr.enable = lib.mkEnableOption "Enable hyprland and wayland";
   };
@@ -62,26 +66,40 @@
         withUWSM = true;
         xwayland.enable = true;
     };
-    programs.uwsm.enable = true;
-    services.displayManager.ly = {
+    # programs.uwsm.enable = true;
+    # services.displayManager.ly = {
+    #     enable = true;
+    #     settings = {
+    #         wayland_cmd = "${pkgs.hyprland}/bin/sh";
+    #     };
+    # };
+    # services.xserver.displayManager.gdm.enable = false;
+    # services.xserver.enable = false;
+    # services.displayManager = {
+    #     enable = true;
+    #     # execCmd = "${pkgs.ly}/bin/ly";
+    # };
+    services.gvfs.enable = true;
+    services.greetd = {
         enable = true;
         settings = {
-            wayland_cmd = "Hyprland";
+            default_session = {
+                command = "${tuigreet} --time --remember --cmd Hyprland";
+                user = "greeter";
+            };
         };
-        # settings = {
-        # };
-    };
-    services.xserver.displayManager.gdm.enable = false;
-    services.xserver.enable = false;
-    services.displayManager = {
-        enable = true;
-        # execCmd = "${pkgs.ly}/bin/ly";
     };
 
 
-
-
-    services.gvfs.enable = true;
+    systemd.services.greetd.serviceConfig = {
+        Type = "idle";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "journal";
+        TTYReset = true;
+        TTYVHangup = true;
+        TTYVTDisallocate = true;
+    };
 
     security.wrappers.wshowkeys = {
       owner = "root";
