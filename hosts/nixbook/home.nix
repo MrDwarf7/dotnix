@@ -34,7 +34,8 @@ in {
     # path = "/home/dwarf/Pictures/wallpapers/hyprpaper.png";
     # path = "../../assets/wallpaper/geometry.png";
     # path = "../../assets/wallpaper/ryo-vending.png";
-    path = "/home/dwarf/dotnix/assets/wallpaper/ryo-vending.png";
+    # path = "/home/dwarf/dotnix/assets/wallpaper/ryo-vending.png";
+    path = "/home/dwarf/dotnix/assets/wallpaper/mountain.png";
     # path = ../../assets/wallpaper/stripes.png;
   };
   home.hyprland.enable = true;
@@ -55,6 +56,9 @@ in {
     # # enableFishIntegration = true; ### TODO: No idea why but I cannot turn this on because apparently it's already set???????
     # enableZshIntegration = true;
     nix-direnv.enable = true;
+    config.global = {
+        hide_env_diff = true; # Less verbose direnv messages
+    };
   };
 
   # services.mpris-proxy.enable = true;
