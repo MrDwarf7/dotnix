@@ -36,11 +36,13 @@
       ninja
       nixd
       openssl
+      # omnix
       # pahole
       perl
       python3
       # qemu_full
       stdenv
+      zed-editor
     ];
   };
 }
