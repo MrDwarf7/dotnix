@@ -1,15 +1,18 @@
 {
   pkgs,
-  ags,
+  # ags,
   lib,
   config,
-  spicetify-nix,
+  # spicetify-nix,
   modulesPath,
   inputs,
   ...
-}: {
+}: let
+    macbookModules = inputs.nixos-hardware.nixosModules;
+in
+{
   imports = [
-    (import ./hardware-configuration.nix {inherit config lib pkgs modulesPath inputs;})
+    (import ./hardware-configuration.nix {inherit config lib pkgs modulesPath macbookModules;})
     # Testing if we can generate our OWN man-db pages instead of man-db cache doing it (which is slow as)
     # (import ./documentation.nix {inherit pkgs config lib;})
   ];
@@ -134,7 +137,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs ags spicetify-nix;};
+    extraSpecialArgs = {inherit inputs;};
     users.dwarf = {...}: {
       imports = [
         ./home.nix

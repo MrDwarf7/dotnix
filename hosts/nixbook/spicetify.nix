@@ -1,9 +1,12 @@
 {
   pkgs,
   lib,
-  spicetify-nix,
+  inputs,
   ...
-}: {
+}: let
+    spicetify-nix = inputs.spicetify-nix;
+in
+{
   imports = [spicetify-nix.homeManagerModules.default];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

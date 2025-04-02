@@ -2,12 +2,13 @@
   pkgs,
   config,
   lib,
-  ags,
+  inputs,
   ...
 }: let
   allColors = import ../../colors.nix;
   colors = allColors.hypr;
   shellName = "tokyo-shell";
+  ags = inputs.ags;
   myShell = ags.lib.bundle {
     inherit pkgs;
     extraPackages =

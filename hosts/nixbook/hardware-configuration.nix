@@ -3,16 +3,22 @@
   lib,
   pkgs,
   modulesPath,
-  inputs,
+  # inputs,
+  macbookModules,
   ...
-}: {
+}: let
+# Add 'disko' to the existing configuration by attr
+in
+{
   imports = [
     (modulesPath + "/hardware/network/broadcom-43xx.nix")
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-1
-    inputs.nixos-hardware.nixosModules.apple-macbook-pro-11-5
+    macbookModules.apple-macbook-pro-11-1
+    macbookModules.apple-macbook-pro-11-5
+
     # Machine is technically this --
-    inputs.nixos-hardware.nixosModules.apple-macbook-pro-12-1
+    # inputs.nixos-hardware.nixosModules.
+    macbookModules.apple-macbook-pro-12-1
     ./disk-config.nix
   ];
 
