@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  # pkgs,
   ...
 }: {
   options = {
@@ -9,8 +9,8 @@
   };
 
   config = lib.mkIf config.home.btop.enable {
-        programs.btop = {
-          enable = true;
-      };
+    programs.btop = {
+      enable = true;
+    };
   };
 }
