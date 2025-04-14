@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  inputs,
+  # inputs,
   ...
 }: {
   options = {
@@ -20,6 +20,8 @@
       cmake
       # debootstrap
       elfutils
+      figma-linux
+      # figma-agent
       flex
       gcc
       gdb
@@ -37,6 +39,7 @@
       ncurses
       ninja
       nixd
+      nil
       openssl
       # omnix
       # pahole
@@ -44,6 +47,7 @@
       python3
       # qemu_full
       stdenv
+      tridactyl-native
       zed-editor
       # zlib
     ];
