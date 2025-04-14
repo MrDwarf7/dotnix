@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -13,6 +14,7 @@
       firefox
       chromium
       vivaldi
+      inputs.zen-browser.packages."${pkgs.system}".default
       # zen
     ];
   };
