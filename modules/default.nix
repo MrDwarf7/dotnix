@@ -5,6 +5,9 @@
   lib,
   ...
 }: {
+
+  # TODO: Move this later lol
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   imports = [
     (import ./programs {
       config = config;
@@ -15,7 +18,7 @@
       # inherit config inputs lib pkgs;
     })
     ./bootloader.nix
-    ./env-variables.nix
+    ( import ./env-variables.nix { pkgs = pkgs; })
     ./firewall.nix
     ./fonts.nix
     ./locale.nix

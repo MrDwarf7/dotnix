@@ -7,6 +7,7 @@
 }: let
 in {
   imports = [
+    ./dotnet.nix
     ./go.nix
     ./lua.nix
     (import ./misc.nix {inherit config inputs lib pkgs;})

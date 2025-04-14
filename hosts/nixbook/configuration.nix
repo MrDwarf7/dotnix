@@ -62,6 +62,7 @@ in
     hypr.enable = true;
 
     languages = {
+      dotnet.enable = false;
       go.enable = true;
       lua.enable = true;
       misc.enable = true;

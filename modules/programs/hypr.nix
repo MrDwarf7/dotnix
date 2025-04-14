@@ -14,8 +14,8 @@ in
 
   config = lib.mkIf config.program.hypr.enable {
     environment.systemPackages = with pkgs; [
-      nwg-drawer
-      wshowkeys
+      # nwg-drawer
+      # wshowkeys
       glib
       wl-clipboard
       grim
@@ -89,7 +89,6 @@ in
             };
         };
     };
-
 
     systemd.services.greetd.serviceConfig = {
         Type = "idle";

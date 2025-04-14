@@ -13,7 +13,7 @@
       pandoc
       zathura
       peaclock
-      # obsidian
+      obsidian
     ];
   };
 }

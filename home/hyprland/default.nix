@@ -59,10 +59,14 @@ in {
 
           # TODO: Have to figure out what the actual one is
           monitor = ["eDP-1,2560x1600,0x0,1.33"];
+          # TEST:
+          xwayland = {
+            force_zero_scaling = true;
+          };
+
           exec-once = [
             "${myShell}/bin/${shellName}"
             "${pkgs.hyprpaper}/bin/hyprpaper"
-            "${pkgs.wvkbd}/bin/wvkbd-mobintl --hidden -L 300"
             # "${pkgs.hyprland}/bin/hyprland"
             # "${pkgs.waybar}/bin/waybar"
           ];
@@ -104,16 +108,16 @@ in {
             sensitivity = 0;
             accel_profile = "adaptive"; ## Having this off will use libinput's default
             # force_no_accel = true; ## Can cause hardware->software mouse desync
-            follow_mouse = 2; # 0 = disabled, 1 = cursor- always change to window under curosr, 2 = cursor - cursor & keyboard are 'sep'. clicking will move keyboard always, 3 = cursor focus is ENTIRELY sep. from keyboard - window clicks don't move keyboard
+            follow_mouse = 3; # 0 = disabled, 1 = cursor- always change to window under curosr, 2 = cursor - cursor & keyboard are 'sep'. clicking will move keyboard always, 3 = cursor focus is ENTIRELY sep. from keyboard - window clicks don't move keyboard
             # follow_mouse_threshold = 1;
             focus_on_close = 0; # 0 = focus to next window candidate, 1 = focus to window under cursor
             repeat_rate = 55; # Repeat rate of the keypress being taken
-            repeat_delay = 300; # Delay before the keypress starts repeating
+            repeat_delay = 280; # Delay before the keypress starts repeating
 
             touchpad = {
               disable_while_typing = true;
               natural_scroll = true;
-              tap-to-click = false;
+              tap-to-click = true; # Enable tap to click -- May want to remove this though
             };
           };
           gestures = {

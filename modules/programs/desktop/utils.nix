@@ -14,7 +14,7 @@
       pika-backup
       resources
       nautilus
-      # Testing
+      #TEST: Testing
       wpa_supplicant
       wpa_supplicant_gui
       networkmanager

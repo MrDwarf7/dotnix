@@ -12,6 +12,8 @@
     # "workspace 5,^(Signal)$"
     # "workspace 7,^(Postman)$"
     # "workspace 9,^(Spotify)$"
+    "workspace 10,title:([oO]bsidian)"
+    "opacity 1.0 0.95,class:(\\.?)([zZ]ed[-\\.]?).*,title:(\\.?)([zZ]ed[-\\.]?).*"
   ];
   windowrulev2 = [
     ########################
@@ -25,5 +27,8 @@
     "float,class:^(it.mijorus.smile)$"
 
     "suppressevent maximize, class:.*" # You'll probably like this.
+
+    # .zed-editor-wra
+    "opacity 1.0 0.95,class:(\\.?)([zZ]ed[-\\.]?).*,title:(\\.?)([zZ]ed[-\\.]?).*"
   ];
 }
