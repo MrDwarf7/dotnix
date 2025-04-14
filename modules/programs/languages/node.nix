@@ -13,6 +13,7 @@
     nixpkgs.overlays = [
     ];
     environment.systemPackages = with pkgs; [
+      biome
       nodejs_latest
       nodemon
       typescript
