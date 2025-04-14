@@ -19,6 +19,7 @@
     ./rofi.nix
     ./starship.nix
     ./terminals.nix
+    ./tridactyl.nix
     ./tmux.nix
     ./waybar.nix
     ./yazi

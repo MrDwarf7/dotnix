@@ -11,7 +11,7 @@
   config = lib.mkIf config.home.tridactyl.enable {
     home.file = {
       ".tridactyl/.tridactyl".enable = true;
-      ".tridactyl".text = ''
+      ".tridactyl/.tridactyl".text = ''
         " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
         " vim: set filetype=tridactyl
 
