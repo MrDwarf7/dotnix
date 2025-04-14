@@ -11,8 +11,8 @@
     services.openssh = {
       enable = true;
       settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
+        #PermitRootLogin = "no";
+        #PasswordAuthentication = true;
       };
       allowSFTP = true;
     };

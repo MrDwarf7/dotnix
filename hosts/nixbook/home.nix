@@ -46,6 +46,7 @@ in {
   home.starship.enable = true;
   home.terminals.enable = true;
   home.tmux.enable = true;
+  home.tridactyl.enable = true;
   home.waybar.enable = true;
   home.yazi.enable = true;
   home.zathura.enable = true;
@@ -57,7 +58,7 @@ in {
     # enableZshIntegration = true;
     nix-direnv.enable = true;
     config.global = {
-        hide_env_diff = true; # Less verbose direnv messages
+      hide_env_diff = true; # Less verbose direnv messages
     };
   };
 

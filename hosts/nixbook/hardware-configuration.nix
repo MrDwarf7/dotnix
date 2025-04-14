@@ -7,9 +7,8 @@
   macbookModules,
   ...
 }: let
-# Add 'disko' to the existing configuration by attr
-in
-{
+  # Add 'disko' to the existing configuration by attr
+in {
   imports = [
     (modulesPath + "/hardware/network/broadcom-43xx.nix")
     (modulesPath + "/installer/scan/not-detected.nix")

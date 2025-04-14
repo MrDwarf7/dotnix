@@ -13,13 +13,13 @@
     nixpkgs.overlays = [
     ];
     environment.systemPackages = with pkgs; [
-        # dotnet-sdk_9
-        # dotnet-runtime_9
-        # dotnet-aspnetcore_9
-        # dotnet-ef
-        # csharpier
-        # omnisharp-roslyn
-        # dotnet-tools
+      # dotnet-sdk_9
+      # dotnet-runtime_9
+      # dotnet-aspnetcore_9
+      # dotnet-ef
+      # csharpier
+      # omnisharp-roslyn
+      # dotnet-tools
     ];
   };
 }

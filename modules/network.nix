@@ -37,7 +37,7 @@ in {
         powersave = true;
         backend = "wpa_supplicant";
         scanRandMacAddress = false;
-	macAddress = "permanent";
+        macAddress = "permanent";
       };
     };
 

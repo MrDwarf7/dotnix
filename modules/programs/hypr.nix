@@ -3,11 +3,9 @@
   lib,
   config,
   ...
-}: 
-let
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-in
-{
+}: let
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+in {
   options = {
     program.hypr.enable = lib.mkEnableOption "Enable hyprland and wayland";
   };
@@ -62,9 +60,9 @@ in
       '')
     ];
     programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
+      enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
     };
     # programs.uwsm.enable = true;
     # services.displayManager.ly = {
@@ -81,23 +79,23 @@ in
     # };
     services.gvfs.enable = true;
     services.greetd = {
-        enable = true;
-        settings = {
-            default_session = {
-                command = "${tuigreet} --time --remember --cmd Hyprland";
-                user = "greeter";
-            };
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${tuigreet} --time --remember --cmd Hyprland";
+          user = "greeter";
         };
+      };
     };
 
     systemd.services.greetd.serviceConfig = {
-        Type = "idle";
-        StandardInput = "tty";
-        StandardOutput = "tty";
-        StandardError = "journal";
-        TTYReset = true;
-        TTYVHangup = true;
-        TTYVTDisallocate = true;
+      Type = "idle";
+      StandardInput = "tty";
+      StandardOutput = "tty";
+      StandardError = "journal";
+      TTYReset = true;
+      TTYVHangup = true;
+      TTYVTDisallocate = true;
     };
 
     security.wrappers.wshowkeys = {

@@ -32,8 +32,8 @@
       # llvmPackages_16.libllvm
       # makeninja
       meson
-        # msbuild
-        # mono
+      # msbuild
+      # mono
       ncurses
       ninja
       nixd
@@ -45,7 +45,7 @@
       # qemu_full
       stdenv
       zed-editor
-        # zlib
+      # zlib
     ];
   };
 }

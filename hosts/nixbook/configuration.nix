@@ -8,9 +8,8 @@
   inputs,
   ...
 }: let
-    macbookModules = inputs.nixos-hardware.nixosModules;
-in
-{
+  macbookModules = inputs.nixos-hardware.nixosModules;
+in {
   imports = [
     (import ./hardware-configuration.nix {inherit config lib pkgs modulesPath macbookModules;})
     # Testing if we can generate our OWN man-db pages instead of man-db cache doing it (which is slow as)

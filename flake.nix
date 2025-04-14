@@ -2,7 +2,7 @@
 # run
 # nix repl
 # then
-# :l <nixpkgs> 
+# :l <nixpkgs>
 # This will 'load' the nixpkgs into the repl
 # then you can use builtins.<TAB> to see all the builtins functions etc.
 {
@@ -18,7 +18,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix. inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     # agenix.url = "github:ryantm/agenix";
     # agenix.inputs.nixpkgs.follows = "nixpkgs";
     # agenix.inputs.darwin.follows = ""; # Don't download the darwin deps
@@ -80,9 +80,11 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs"; # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure to have it up to date or simply don't specify the nixpkgs input
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs = inputs @ {
@@ -117,7 +119,7 @@
 
     nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs nixpkgs;};
+      specialArgs = {inherit inputs nixpkgs lib;};
       modules = [
         ./modules
         ./hosts/nixbook/configuration.nix
@@ -132,7 +134,6 @@
     #     ./home/dwarf/nixbook.nix
     #   ];
     # };
-    formatter = 
-      forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
