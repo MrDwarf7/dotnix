@@ -21,6 +21,10 @@
       dina-font
       proggyfonts
       nerd-fonts.jetbrains-mono
+      nerd-fonts.mononoki
+      nerd-fonts.zed-mono
+      # nerd-fonts.zed-plex-mono
+      ibm-plex
       jetbrains-mono
       (import ./derivations/pilowlava.nix {
         pkgs = pkgs;

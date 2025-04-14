@@ -25,6 +25,7 @@
       nitch
       macchina # Neofetch alternative in Rust
       pipes-rs
+      pfetch-rs
       sl
       toilet
       (fortune.override {withOffensive = true;})
