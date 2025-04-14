@@ -144,31 +144,31 @@ title_error = { fg = "#e0af68" } # Yellow
 [filetype]
 
 rules = [
-    # Images
-    { mime = "image/*", fg = "#e0af68" }, # Yellow
+  # Images
+  { mime = "image/*", fg = "#e0af68" }, # Yellow
 
-    # Media
-    { mime = "video/*", fg = "#f7768e" }, # Red
-    { mime = "audio/*", fg = "#f7768e" }, # Red
+  # Media
+  { mime = "video/*", fg = "#f7768e" }, # Red
+  { mime = "audio/*", fg = "#f7768e" }, # Red
 
-    # Archives
-    { mime = "application/zip", fg = "#bb9af7" },             # Magenta
-    { mime = "application/x-tar", fg = "#bb9af7" },           # Magenta
-    { mime = "application/x-bzip*", fg = "#bb9af7" },         # Magenta
-    { mime = "application/x-bzip2", fg = "#bb9af7" },         # Magenta
-    { mime = "application/x-7z-compressed", fg = "#bb9af7" }, # Magenta
-    { mime = "application/x-rar", fg = "#bb9af7" },           # Magenta
-    { mime = "application/x-xz", fg = "#bb9af7" },            # Magenta
+  # Archives
+  { mime = "application/zip", fg = "#bb9af7" },             # Magenta
+  { mime = "application/x-tar", fg = "#bb9af7" },           # Magenta
+  { mime = "application/x-bzip*", fg = "#bb9af7" },         # Magenta
+  { mime = "application/x-bzip2", fg = "#bb9af7" },         # Magenta
+  { mime = "application/x-7z-compressed", fg = "#bb9af7" }, # Magenta
+  { mime = "application/x-rar", fg = "#bb9af7" },           # Magenta
+  { mime = "application/x-xz", fg = "#bb9af7" },            # Magenta
 
-    # Documents
-    { mime = "application/doc", fg = "#9ece6a" },   # Green
-    { mime = "application/pdf", fg = "#9ece6a" },   # Green
-    { mime = "application/rtf", fg = "#9ece6a" },   # Green
-    { mime = "application/vnd.*", fg = "#9ece6a" }, # Green
+  # Documents
+  { mime = "application/doc", fg = "#9ece6a" },   # Green
+  { mime = "application/pdf", fg = "#9ece6a" },   # Green
+  { mime = "application/rtf", fg = "#9ece6a" },   # Green
+  { mime = "application/vnd.*", fg = "#9ece6a" }, # Green
 
-    # Fallback
-    { name = "*", fg = "#c6d0f5" },  # Light gray
-    { name = "*/", fg = "#7aa2f7" }, # Blue
+  # Fallback
+  { name = "*", fg = "#c6d0f5" },  # Light gray
+  { name = "*/", fg = "#7aa2f7" }, # Blue
 ]
 
 # : }}}
