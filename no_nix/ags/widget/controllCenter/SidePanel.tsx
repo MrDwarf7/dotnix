@@ -1,5 +1,5 @@
-import { Variable } from "astal";
-import { View } from "../../types";
+import type { Variable } from "astal";
+import type { View } from "../../types";
 import { App } from "astal/gtk3";
 
 type TabButton = [string, View]

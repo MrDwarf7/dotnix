@@ -1,5 +1,5 @@
 import { Gtk } from "astal/gtk3";
-import AstalApps from "gi://AstalApps"
+import type AstalApps from "gi://AstalApps"
 
 type Props = {
 	app: AstalApps.Application,

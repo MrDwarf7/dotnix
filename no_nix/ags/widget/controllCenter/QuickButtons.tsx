@@ -1,4 +1,4 @@
-import { Binding, execAsync, Variable } from "astal"
+import { type Binding, execAsync, Variable } from "astal"
 
 type QuickButtonProps = {
 	content: Binding<string> | string

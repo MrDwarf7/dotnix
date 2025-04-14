@@ -1,4 +1,4 @@
-import { Astal, Gdk } from "astal/gtk3";
+import { type Astal, Gdk } from "astal/gtk3";
 
 // From hyprpanel <3
 

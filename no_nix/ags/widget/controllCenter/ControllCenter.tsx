@@ -14,7 +14,7 @@ import AstalBluetooth from "gi://AstalBluetooth"
 import { Apps } from "./Apps/Apps"
 import { Mixer } from "./Mixer/Mixer"
 import { SidePanel } from "./SidePanel"
-import { View } from "../../types"
+import type { View } from "../../types"
 
 type ControllProps = { setCurrentView: (view: View) => void }
 

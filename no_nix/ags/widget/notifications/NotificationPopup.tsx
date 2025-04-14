@@ -1,7 +1,7 @@
-import { Astal, Gtk, Gdk } from "astal/gtk3"
+import { Astal, type Gtk, type Gdk } from "astal/gtk3"
 import Notifd from "gi://AstalNotifd"
-import { Subscribable } from "astal/binding"
-import { GLib, Variable, bind } from "astal"
+import type { Subscribable } from "astal/binding"
+import { type GLib, Variable, bind } from "astal"
 import { Notification } from "./Notification"
 
 // see comment below in constructor

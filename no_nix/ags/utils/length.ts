@@ -13,7 +13,7 @@ const maxSizeForUnit = (unit: Unit) => {
         case "hour":
             return 24;
         case "day":
-            return Infinity;
+            return Number.POSITIVE_INFINITY;
     }
 };
 
