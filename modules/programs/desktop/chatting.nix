@@ -16,7 +16,7 @@
         # zulip
         # element-desktop
         discord
-        signal-desktop
+        signal-desktop-bin
         telegram-desktop
       ]
       ++ (
