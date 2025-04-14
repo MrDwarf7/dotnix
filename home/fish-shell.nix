@@ -4,7 +4,7 @@
 {
   config,
   lib,
-  pkgs,
+  # pkgs,
   ...
 }: {
   options = {
@@ -65,6 +65,7 @@
         gp = "git push";
         gco = "git checkout";
         grv = "git remote -v";
+        zed = "zeditor";
       };
       interactiveShellInit = ''
             if test -e starship; and test -x starship
