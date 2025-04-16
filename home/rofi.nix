@@ -14,7 +14,7 @@
       cycle = true;
       terminal = "${pkgs.ghostty}/bin/ghostty";
       # terminal = "${pkgs.ghostty}/bin/wezterm";
-      theme = ../no_nix/rofi-theme.rasi;
+      theme = ./no_nix/rofi-theme.rasi;
       extraConfig = {
         modi = "run,drun,window";
 
