@@ -32,14 +32,8 @@ play = []
 
 [open]
 prepend_rules = [
-  { name = ".gitconfig", run = "nvim %*", use = [
-    "open",
-    "edit",
-  ], for = "windows" },
-  { name = ".gitconfig", run = "nvim $@", use = [
-    "open",
-    "edit",
-  ], for = "unix" },
+  { name = ".gitconfig", run = "nvim %*", use = [ "open", "edit", ], for = "windows" },
+  { name = ".gitconfig", run = "nvim $@", use = [ "open", "edit", ], for = "unix" },
 ]
 
 [plugin]
