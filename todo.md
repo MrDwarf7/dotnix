@@ -2,13 +2,7 @@
 
 ## Fixme's
 
-- networkctl doesn't autostart
-- have to call Hyprland manually on login
-- Waybar not starting automatically
 - Seeing up BTRFS scrubbing (and ensuring it's being done correctly)
-- Setting up NixOS backups 
-
-- Figure out what river is used for and if I want to keep it
 
 ## Big ones for home-manager
 
