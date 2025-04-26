@@ -189,60 +189,6 @@
         relative-motions = inputs.relative-motions;
         eza-preview = inputs.eza-preview;
 
-        # glow = pkgs.fetchFromGitHub {
-        #     owner = "Reledia";
-        #     repo = "glow.yazi";
-        #     rev = "c76bf4f";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-
-        # hexyl = pkgs.fetchFromGitHub {
-        #     owner = "Reledia";
-        #     repo = "hexyl.yazi";
-        #     rev = "228a9ef";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        # miller = pkgs.fetchFromGitHub {
-        #     owner = "Reledia";
-        #     repo = "miller.yazi";
-        #     rev = "40e0265";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        #
-        # rich-preview = pkgs.fetchFromGitHub {
-        #     owner = "AnirudhG07";
-        #     repo = "rich-preview.yazi";
-        #     rev = "2559e5f";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        #
-        # ouch = pkgs.fetchFromGitHub {
-        #     owner = "ndtoan96";
-        #     repo = "ouch.yazi";
-        #     rev = "558188d";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        #
-        # starship = pkgs.fetchFromGitHub {
-        #     owner = "Rolv-Apneseth";
-        #     repo = "starship.yazi";
-        #     rev = "6c639b4";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        #
-        # relative-motions = pkgs.fetchFromGitHub {
-        #     owner = "dedukun";
-        #     repo = "relative-motions.yazi";
-        #     rev = "8103065";
-        #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
-        # };
-        #
-        # eza-preview = pkgs.fetchFromGitHub {
-        #     owner = "sharklasers996";
-        #     repo = "eza-preview.yazi";
-        #     rev = "7ca4c25";
-        #     hash = "sha256-ncOOCj53wXPZvaPSoJ5LjaWSzw1omHadKDrXdIb7G5U=";
-        # };
       };
 
       # initLua = ''
@@ -431,54 +377,63 @@
             desc = "Toggle tree/list preview";
           }
         ];
-
-        # help = [
-        #     {
-        #         on = "<Esc>";
-        #         run = "escape";
-        #         desc = "Clear the filter, or hide the help";
-        #     }
-        #     {
-        #         on = "<C-[>";
-        #         run = "escape";
-        #         desc = "Clear the filter, or hide the help";
-        #     }
-        #     {
-        #         on = "q";
-        #         run = "close";
-        #         desc = "Exit the process";
-        #     }
-        #     {
-        #         on = "<C-c>";
-        #         run = "close";desc = "Hide the help";
-        #     }
-        #     {
-        #         on = "k";
-        #         run = "arrow -1";
-        #         desc = "Move cursor up";
-        #     }
-        #     {
-        #         on = "j";
-        #         run = "arrow 1";
-        #         desc = "Move cursor down";
-        #     }
-        #     {
-        #         on = "<Up>";
-        #         run = "arrow -1";
-        #         desc = "Move cursor up";
-        #     }
-        #     {
-        #         on = "<Down>";
-        #         run = "arrow 1";
-        #         desc = "Move cursor down";
-        #     }
-        #     {
-        #         on = "/";
-        #         run = "filter";
-        #         desc = "Apply a filter for the help items";
-        #     }
-        # ];
       };
     };
   };
 }
+
+
+# glow = pkgs.fetchFromGitHub {
+#     owner = "Reledia";
+#     repo = "glow.yazi";
+#     rev = "c76bf4f";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+
+# hexyl = pkgs.fetchFromGitHub {
+#     owner = "Reledia";
+#     repo = "hexyl.yazi";
+#     rev = "228a9ef";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+# miller = pkgs.fetchFromGitHub {
+#     owner = "Reledia";
+#     repo = "miller.yazi";
+#     rev = "40e0265";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+#
+# rich-preview = pkgs.fetchFromGitHub {
+#     owner = "AnirudhG07";
+#     repo = "rich-preview.yazi";
+#     rev = "2559e5f";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+#
+# ouch = pkgs.fetchFromGitHub {
+#     owner = "ndtoan96";
+#     repo = "ouch.yazi";
+#     rev = "558188d";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+#
+# starship = pkgs.fetchFromGitHub {
+#     owner = "Rolv-Apneseth";
+#     repo = "starship.yazi";
+#     rev = "6c639b4";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+#
+# relative-motions = pkgs.fetchFromGitHub {
+#     owner = "dedukun";
+#     repo = "relative-motions.yazi";
+#     rev = "8103065";
+#     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+# };
+#
+# eza-preview = pkgs.fetchFromGitHub {
+#     owner = "sharklasers996";
+#     repo = "eza-preview.yazi";
+#     rev = "7ca4c25";
+#     hash = "sha256-ncOOCj53wXPZvaPSoJ5LjaWSzw1omHadKDrXdIb7G5U=";
+# };
