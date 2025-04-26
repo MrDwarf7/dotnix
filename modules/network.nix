@@ -29,26 +29,26 @@ in {
     # networking.dhcpcd.extraConfig = "nohook resolve.conf"; ## May be useful? need to read doc
 
     # TEST: New things
-    networking.dhcpcd.persistent = true;
     networking.enableB43Firmware = true;
     # networking.wireless.driver = "b43"; #??? -- crashes wpa_supplicant on rebuild lol??
     # networking.wireless.secretsFile = "${pkgs.sops}/bin/sops"; ? which one?
     # networking.wireless.secretsFile = "/home/dwarf/.config/sops/age/keys.txt"; ? which one?
 
-    networking.useDHCP = true; # Use it GLOBALY
+    # networking.useDHCP = true; # Use it GLOBALY
 
     networking.networkmanager = {
       enable = true;
       unmanaged = ["docker0"];
       wifi = {
-        powersave = true;
+        powersave = false;
         backend = "wpa_supplicant";
         scanRandMacAddress = false;
         macAddress = "permanent";
       };
     };
 
-    networking.wireless.enable = true;
+    # IF WE ARE USING NetworkManager, this should be FALSE
+    networking.wireless.enable = false;
     # networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
 
     networking.wireless.interfaces = [
