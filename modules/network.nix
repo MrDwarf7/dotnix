@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   inputs,
@@ -7,6 +6,7 @@
 }: let
   device = "wlp3s0";
   pass = config.sops.secrets."home_wifi/cocacola/pass".path;
+  iphone_pass = config.sops.secrets."phone_wifi/iphone_wifi/pass".path;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -26,7 +26,14 @@ in {
 
     # Drastically slows down boot times for basically no benefit
     systemd.services.NetworkManager-wait-online.enable = false;
-    networking.dhcpcd.extraConfig = "nohook resolve.conf";
+    # networking.dhcpcd.extraConfig = "nohook resolve.conf"; ## May be useful? need to read doc
+
+    # TEST: New things
+    networking.dhcpcd.persistent = true;
+    networking.enableB43Firmware = true;
+    # networking.wireless.driver = "b43"; #??? -- crashes wpa_supplicant on rebuild lol??
+    # networking.wireless.secretsFile = "${pkgs.sops}/bin/sops"; ? which one?
+    # networking.wireless.secretsFile = "/home/dwarf/.config/sops/age/keys.txt"; ? which one?
 
     networking.useDHCP = true; # Use it GLOBALY
 
@@ -42,21 +49,34 @@ in {
     };
 
     networking.wireless.enable = true;
-    # networking.networkmanager.enable = true; ## Wired
-    networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
+    # networking.wireless.scanOnLowSignal = false; # Will make changing quicker, but drains battery (and can be annoying while debugging etc. too)
 
-    # networking.wireless.interfaces = [
-    #   device
-    # ];
+    networking.wireless.interfaces = [
+      device
+    ];
 
     networking.wireless.networks = {
       "CocaCola" = {
-        # psk = "$(cat ${pass})"; ## Old way of testing this out
-        psk = ''${pass}'';
+        psk = "${pass}";
+        priority = 10;
       };
+
+      "Blake's iPhone" = {
+        psk = "${iphone_pass}";
+        priority = 1;
+      };
+
+      # Same as above, just via the BSSID instead
+      # "B2:80:8E:FE:41:90" = {
+      #   psk = ''${iphone_pass}'';
+      #   priority = 1;
+      # };
     };
-    networking.useNetworkd = true;
-    systemd.network.enable = true;
+
+    ## TESTING: turned off 26/27 April 2025
+    # networking.useNetworkd = true;
+    # systemd.network.enable = true;
+    # systemd.network.wait-online = false;
   };
 }
 # Allow for `http://👻` thx to @elmo@chaos.social

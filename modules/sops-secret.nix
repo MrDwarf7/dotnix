@@ -38,9 +38,19 @@
       # neededForUsers = true;
     };
 
-    sops.templates = {
-      "home_wifi_ssid".content = ''${config.sops.placeholder."home_wifi/cocacola/ssid"}'';
-      "home_wifi_pass".content = ''${config.sops.placeholder."home_wifi/cocacola/pass"}'';
+    sops.secrets."phone_wifi/iphone_wifi/ssid" = {
+      # neededForUsers = true;
     };
+    sops.secrets."phone_wifi/iphone_wifi/pass" = {
+      # neededForUsers = true;
+    };
+
+    # Not making any use of these currently - best to just comment them out for now
+    # sops.templates = {
+    #   "home_wifi_ssid".content = ''${config.sops.placeholder."home_wifi/cocacola/ssid"}'';
+    #   "home_wifi_pass".content = ''${config.sops.placeholder."home_wifi/cocacola/pass"}'';
+    # };
+    # "phone_wifi_ssid".content = ''${config.sops.placeholder."phone_wifi/iphone_wifi/ssid"}'';
+    # "phone_wifi_pass".content = ''${config.sops.placeholder."phone_wifi/iphone_wifi/pass"}'';
   };
 }

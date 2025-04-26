@@ -6,8 +6,8 @@
 }: let
   asMins = mins: 60 * mins;
   lock = "pidof hyprlock || hyprlock";
-  lockWarning = 30;
-  lockTimeout = asMins 5;
+  lockWarning = 30; # Seconds
+  lockTimeout = asMins 10;
   # 60 * 5;
   suspendTimeout = asMins 20;
   # 60 * 10;

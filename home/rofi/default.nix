@@ -12,9 +12,9 @@
       enable = true;
       package = pkgs.rofi-wayland;
       cycle = true;
-      terminal = "${pkgs.ghostty}/bin/ghostty";
       # terminal = "${pkgs.ghostty}/bin/wezterm";
-      theme = ./no_nix/rofi-theme.rasi;
+      terminal = "${pkgs.ghostty}/bin/ghostty";
+      theme = "./dotnix/home/rofi/rofi-theme.rasi";
       extraConfig = {
         modi = "run,drun,window";
 

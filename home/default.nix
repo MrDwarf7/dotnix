@@ -16,7 +16,7 @@
     ./hyprlock.nix
     ./hyprpaper.nix
     ./river.nix
-    ./rofi.nix
+    ./rofi
     ./starship.nix
     ./terminals.nix
     ./tridactyl.nix

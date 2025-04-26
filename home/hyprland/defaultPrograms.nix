@@ -1,4 +1,29 @@
 {pkgs, ...}: let
+  checkAttrValue = cat: maybeIndex: let
+    defaultSelections =
+      builtins.mapAttrs (
+        name: value:
+        # If it's a list, get the first item
+          if builtins.isList value
+          then 0
+          # If it's an attr set, get the first item
+          else builtins.head (builtins.attrValues value)
+      )
+      defaults;
+  in (
+    if maybeIndex == null
+    then defaultSelections.${cat}
+    else maybeIndex
+  );
+
+  # getProgram function: takes a category and optionally an index/key
+  getProgram = fromCat: maybeIndex:
+    with builtins;
+    # For lists (e.g., terminal), get the attr set at the index and extract its value
+      head (attrValues (elemAt defaults.${fromCat} (
+        checkAttrValue fromCat maybeIndex
+      )));
+
   defaults = {
     terminal = [
       {ghostty = "${pkgs.ghostty}/bin/ghostty";}
@@ -45,31 +70,6 @@
       {notify-send = "${pkgs.libnotify}/bin/notify-send";}
     ];
   };
-
-  checkAttrValue = cat: checkForNull: let
-    defaultSelections =
-      builtins.mapAttrs (
-        name: value:
-        # If it's a list, get the first item
-          if builtins.isList value
-          then 0
-          # If it's an attr set, get the first item
-          else builtins.head (builtins.attrValues value)
-      )
-      defaults;
-  in (
-    if checkForNull == null
-    then defaultSelections.${cat}
-    else checkForNull
-  );
-
-  # getProgram function: takes a category and optionally an index/key
-  getProgram = fromCat: maybeIndex:
-    with builtins;
-    # For lists (e.g., terminal), get the attr set at the index and extract its value
-      head (attrValues (elemAt defaults.${fromCat} (
-        checkAttrValue fromCat maybeIndex
-      )));
 in {
   defaults = defaults;
   getProgram = getProgram;

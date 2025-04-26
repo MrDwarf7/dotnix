@@ -13,7 +13,7 @@
   rules = import ./rules.nix;
 
   defaultPrograms = import ./defaultPrograms.nix {inherit pkgs;};
-  defaults = defaultPrograms.defaults;
+  # defaults = defaultPrograms.defaults;
   getProgram = defaultPrograms.getProgram;
 in {
   bind = let
@@ -68,7 +68,7 @@ in {
     "${mainMod}, G, togglegroup"
     "${mainMod}, Q, killactive,"
 
-    # "${mainMod}, F, fullscreen, 1"
+    "${mainModCtrl}, F, fullscreen, 1"
     # "${mainMod} SHIFt, F, fullscreen, 0"
 
     #### Arrows used for workspace stuff ####
