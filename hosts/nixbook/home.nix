@@ -40,7 +40,7 @@ in {
   };
   home.hyprland.enable = true;
   home.moxide = import ./moxide.nix;
-  home.river.enable = true;
+  home.river.enable = false;
   home.rofi.enable = true;
   # home.wrofi.enable = true;
   home.starship.enable = true;
