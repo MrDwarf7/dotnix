@@ -79,7 +79,7 @@
         if uwsm check may-start && uwsm select; then
             exec uwsm start default
         end
-        eval $(nh completions --shell fish)
+        eval $(nh completions fish)
       '';
 
       functions = {

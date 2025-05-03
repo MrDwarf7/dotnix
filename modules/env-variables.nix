@@ -5,7 +5,7 @@
       VISUAL = "nvim";
       PAGER = "less";
       SHELL = "fish";
-      FLAKE = "/home/dwarf/dotnix";
+      NH_FLAKE = "/home/dwarf/dotnix";
       XCURSOR_THEME = "Bibata-Modern-Ice";
       XCURSOR_SIZE = "24";
 
