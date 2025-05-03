@@ -12,6 +12,56 @@
     dwarf@nixbook -- MacbBook Pro 12,1 (Early 2015)
   '';
 
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    # disko,
+    # ags,
+    # spicetify-nix,
+    ...
+  }: let
+    args = {
+      inherit self;
+      # inherit (inputs) outputs;
+      inherit (nixpkgs) lib;
+      pkgs = import nixpkgs {};
+    };
+    lib = import ./lib args;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    # user = builtins.getEnv "USER";
+    # hostname = builtins.readFile "/etc/hostname";
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+    overlays = import ./overlays {inherit inputs;};
+
+    nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs nixpkgs lib;};
+      modules = [
+        ./modules
+        ./hosts/nixbook/configuration.nix
+        inputs.disko.nixosModules.disko
+        inputs.home-manager.nixosModules.home-manager
+      ];
+    };
+    # homeConfigurations."dwarf@nixbook" = inputs.home-manager.lib.homeManagerConfiguration {
+    #   extraSpecialArgs = {inherit inputs;}; #outputs = self; };
+    #   specialArgs = {inherit inputs;};
+    #   modules = [
+    #     ./home/dwarf/nixbook.nix
+    #   ];
+    # };
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
@@ -85,55 +135,5 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    # disko,
-    # ags,
-    # spicetify-nix,
-    ...
-  }: let
-    args = {
-      inherit self;
-      # inherit (inputs) outputs;
-      inherit (nixpkgs) lib;
-      pkgs = import nixpkgs {};
-    };
-    lib = import ./lib args;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    # user = builtins.getEnv "USER";
-    # hostname = builtins.readFile "/etc/hostname";
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-    overlays = import ./overlays {inherit inputs;};
-
-    nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs nixpkgs lib;};
-      modules = [
-        ./modules
-        ./hosts/nixbook/configuration.nix
-        inputs.disko.nixosModules.disko
-        inputs.home-manager.nixosModules.home-manager
-      ];
-    };
-    # homeConfigurations."dwarf@nixbook" = inputs.home-manager.lib.homeManagerConfiguration {
-    #   extraSpecialArgs = {inherit inputs;}; #outputs = self; };
-    #   specialArgs = {inherit inputs;};
-    #   modules = [
-    #     ./home/dwarf/nixbook.nix
-    #   ];
-    # };
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
