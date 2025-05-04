@@ -12,7 +12,7 @@
   config = lib.mkIf config.home.tmux.enable {
     programs.tmux = {
       enable = true;
-      shell = "${pkgs.zsh}/bin/fish";
+      shell = "${pkgs.fish}/bin/fish";
       # shell = "${pkgs.zsh}/bin/zsh";
       prefix = "C-a";
       keyMode = "vi";

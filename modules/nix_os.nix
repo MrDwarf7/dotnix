@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   config,
   ...
@@ -21,6 +22,12 @@
       #   dates = "weekly";
       #   options = "--delete-older-than 30d";
       # };
+      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
+      registry = {
+        nixpkgs.flake = inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
+        # nixpkgs-stable.flake = inputs.nixpkgs-stable;
+      };
 
       settings = {
         experimental-features = ["nix-command" "flakes" "recursive-nix" "ca-derivations"];

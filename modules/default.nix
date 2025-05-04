@@ -6,7 +6,6 @@
   ...
 }: {
   # TODO: Move this later lol
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   imports = [
     (import ./programs {
       config = config;

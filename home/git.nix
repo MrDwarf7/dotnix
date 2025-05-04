@@ -45,6 +45,7 @@
         unst = "restore --staged";
         uncm = "reset --soft HEAD~1";
       };
+      ignores = ["*~" "*.swp"];
 
       extraConfig = {
         init.defaultBranch = "main";
