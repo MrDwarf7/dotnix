@@ -188,7 +188,6 @@
         starship = inputs.starship;
         relative-motions = inputs.relative-motions;
         eza-preview = inputs.eza-preview;
-
       };
 
       # initLua = ''
@@ -381,15 +380,12 @@
     };
   };
 }
-
-
 # glow = pkgs.fetchFromGitHub {
 #     owner = "Reledia";
 #     repo = "glow.yazi";
 #     rev = "c76bf4f";
 #     hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
 # };
-
 # hexyl = pkgs.fetchFromGitHub {
 #     owner = "Reledia";
 #     repo = "hexyl.yazi";
@@ -437,3 +433,4 @@
 #     rev = "7ca4c25";
 #     hash = "sha256-ncOOCj53wXPZvaPSoJ5LjaWSzw1omHadKDrXdIb7G5U=";
 # };
+
