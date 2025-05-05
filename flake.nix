@@ -60,6 +60,33 @@
     #   ];
     # };
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    devShells = forAllSystems (system: let
+        pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ inputs.rust-overlay.overlays.default ];
+        };
+        rustToolchain = pkgs.rust-bin.nightly.latest.default;
+        alejandra = pkgs.alejandra;
+        agenix = pkgs.agenix;
+    in {
+          default = pkgs.mkShell {
+          name = "devShell-${system}";
+          description = "Development shell for NixOS configuration";
+          packages = with pkgs; [
+          agenix-cli
+          rustToolchain
+          nixd # Nix language server
+          fish # Fish shell
+          sops
+          age
+          ssh-to-age
+          ssh-to-pgp
+          alejandra # Alejandra Nix formatter
+          direnv
+        ];
+      };
+    });
   };
 
   inputs = {
