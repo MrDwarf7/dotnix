@@ -41,7 +41,7 @@
       nixd
       nil
       openssl
-      # omnix
+      omnix
       # pahole
       perl
       python3
