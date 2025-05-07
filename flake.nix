@@ -62,28 +62,29 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     devShells = forAllSystems (system: let
-        pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ inputs.rust-overlay.overlays.default ];
-        };
-        rustToolchain = pkgs.rust-bin.nightly.latest.default;
-        alejandra = pkgs.alejandra;
-        agenix = pkgs.agenix;
+      pkgs = import nixpkgs {
+        inherit system;
+        # overlays = [inputs.rust-overlay.overlays.default];
+      };
+      alejandra = pkgs.alejandra;
+      # rustToolchain = pkgs.rust-bin.nightly.latest.default;
     in {
-          default = pkgs.mkShell {
-          name = "devShell-${system}";
-          description = "Development shell for NixOS configuration";
-          packages = with pkgs; [
-          agenix-cli
-          rustToolchain
-          nixd # Nix language server
-          fish # Fish shell
-          sops
+      default = pkgs.mkShell {
+        name = "devShell-${system}";
+        description = "Development shell for NixOS configuration";
+        packages = with pkgs; [
+          #
           age
-          ssh-to-age
-          ssh-to-pgp
+          # agenix-cli
           alejandra # Alejandra Nix formatter
           direnv
+          fish # Fish shell
+          nixd # Nix language server
+          omnix
+          # rustToolchain
+          sops
+          ssh-to-age
+          ssh-to-pgp
         ];
       };
     });
@@ -96,9 +97,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # agenix.url = "github:ryantm/agenix";
-    # agenix.inputs.nixpkgs.follows = "nixpkgs";
-    # agenix.inputs.darwin.follows = ""; # Don't download the darwin deps
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
