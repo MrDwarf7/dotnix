@@ -3,8 +3,7 @@
   lib,
   config,
   ...
-}: let
-in {
+}: {
   options = {
     program.fishShell.enable = lib.mkEnableOption "Enable the Fish shell";
   };
