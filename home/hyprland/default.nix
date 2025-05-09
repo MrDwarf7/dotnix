@@ -43,6 +43,13 @@ in {
   options = {
     home.hyprland.enable = lib.mkEnableOption "Enable hyprland config";
   };
+
+  imports = [
+    ./hypridle.nix  
+    ./hyprlock.nix  
+    ./hyprpaper.nix 
+  ];
+
   config = with config.home;
     lib.mkIf hyprland.enable {
       wayland.windowManager.hyprland = let

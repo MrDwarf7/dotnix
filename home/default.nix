@@ -12,9 +12,9 @@
     ./gpg.nix
     ./gtk.nix
     ./home-manager-config.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
+    # ./hypridle.nix
+    # ./hyprlock.nix
+    # ./hyprpaper.nix
     ./river.nix
     ./rofi
     ./starship.nix
