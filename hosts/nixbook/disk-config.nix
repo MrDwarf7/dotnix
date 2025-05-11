@@ -1,3 +1,15 @@
+# Step 1: Run lsblk and find the device name of your disk
+# Step 2: cd /tmp
+# Step 3: curl https://raw.githubusercontent.com/mrdwarf7/dotnix/main/main/hosts/nixbook/disk-config.nix > /tmp/disk-config.nix
+# Step 4: EDIT THE EXISTING CONFIG AND CHECK
+# Step 5: sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /tmp/disk-config.nix
+# (NOTE: the arg for --dry-run OR --yes-wipe-all-disks)
+#
+# Step 6: nixos-generate-config --no-filesystem --root /mnt
+# Step 7 (Optional now really, though safer lol): mv /tmp/disk-config.nix /mnt/etc/nixos
+# Step SANITY - Check to make sure the new disk is included in the flake.nix config somwhere and the attrs are set up correctly
+#
+
 let
   attrs = [
     "compress=zstd"
