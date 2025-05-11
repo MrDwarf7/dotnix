@@ -82,8 +82,8 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${tuigreet} --time --remember --cmd Hyprland";
           user = "greeter";
+          command = "${tuigreet} --time --remember --cmd Hyprland";
         };
       };
     };
