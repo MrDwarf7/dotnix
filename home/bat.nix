@@ -23,6 +23,12 @@
       #     file = "extras/sublime/tokyonight_night.tmTheme";
       #   };
       # };
+
+    extraPackages = with pkgs.bat-extras; [
+      batman
+      batpipe
+      batgrep
+    ];
     };
   };
 }
