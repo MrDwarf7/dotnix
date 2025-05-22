@@ -68,6 +68,7 @@ in {
           monitor = ["eDP-1,2560x1600,0x0,1.33"];
           # TEST:
           xwayland = {
+            # enable = true;
             force_zero_scaling = true;
           };
 
