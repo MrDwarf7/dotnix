@@ -9,7 +9,6 @@
 # Step 7 (Optional now really, though safer lol): mv /tmp/disk-config.nix /mnt/etc/nixos
 # Step SANITY - Check to make sure the new disk is included in the flake.nix config somwhere and the attrs are set up correctly
 #
-
 let
   attrs = [
     "compress=zstd"

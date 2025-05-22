@@ -24,11 +24,11 @@
       #   };
       # };
 
-    extraPackages = with pkgs.bat-extras; [
-      batman
-      batpipe
-      batgrep
-    ];
+      extraPackages = with pkgs.bat-extras; [
+        batman
+        batpipe
+        batgrep
+      ];
     };
   };
 }

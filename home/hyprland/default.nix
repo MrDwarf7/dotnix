@@ -45,9 +45,9 @@ in {
   };
 
   imports = [
-    ./hypridle.nix  
-    ./hyprlock.nix  
-    ./hyprpaper.nix 
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
   ];
 
   config = with config.home;

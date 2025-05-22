@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  # pkgs,
+  pkgs,
   ...
 }: {
   options = {
@@ -12,8 +12,8 @@
     programs.btop = {
       enable = true;
       package = pkgs.btop.override {
-          rocmSupport = true;
-          cudaSupport = true;
+        rocmSupport = true;
+        cudaSupport = true;
       };
       settings = {
         vim_keys = true;
