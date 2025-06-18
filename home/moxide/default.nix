@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  utils = import ../../utils.nix {lib = lib;};
+  utils = import ../../lib/attrs.nix {lib = lib;};
   generators = import ./mkYaml.nix {
     lib = lib;
     pkgs = pkgs;

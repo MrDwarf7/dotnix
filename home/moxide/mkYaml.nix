@@ -2,7 +2,7 @@
   lib,
   pkgs,
 }: let
-  utils = import ../../utils.nix {lib = lib;};
+  utils = import ../../lib/attrs.nix {lib = lib;};
   mkLayout = window:
     if builtins.hasAttr "layout" window
     then "layout: ${window.layout}"
