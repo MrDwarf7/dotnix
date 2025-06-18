@@ -1,9 +1,73 @@
 {lib}:
 with builtins;
 with lib; rec {
+  # entries :: attrs -> [ { name, value } ]
+  entries = attrsToList;
+
+  # Compatibility shim, remove once call-sites migrated
+  entries' = attrs:
+    map (e: {
+      key = e.name;
+      inherit (e) value;
+    }) (attrsToList attrs);
+
+  ## Previous version from utils.nix file
+  # entries = attrs:
+  #   map (key: {
+  #     key = key;
+  #     value = attrs.${key};
+  #   }) (attrNames attrs);
+
   # attrsToList :: attrs -> attrs
+  # Example:
+  # startAttrs = { a = 1; b = 2; }; -> [ { n = name = "a"; value = 1; }
+  # [{fieldOne = "a"; fieldTwo = 1} {fieldOne = "b"; fieldTwo = 2}]
+  # # where fieldOne is the name and fieldTwo is the value
   attrsToList = attrs:
     mapAttrsToList (name: value: {inherit name value;}) attrs;
+
+  innerMapping = attrs: keyT: valueT: key: let
+    entry = {
+      key = key;
+      value = attrs.${key};
+    };
+  in {
+    name = keyT entry;
+    value = valueT entry;
+  };
+
+  # transformAttrs ::
+  #   attrs
+  #   -> ({ name, value } -> string)    # keyTransform
+  #   -> ({name, value } -> any)        # valueTransform
+  #   -> attrs
+  transformAttrs = attrs: keyT: valueT:
+    listToAttrs (
+      /*
+      key inferred from current map idx
+      */
+      map (innerMapping attrs keyT valueT) (attrNames attrs)
+    );
+
+  ## Previous verison from utils.nix file
+  # transformAttrs = attrs: keyTransform: valueTransform:
+  #   listToAttrs (
+  #     map (key: let
+  #       entry = {
+  #         key = key;
+  #         value = attrs.${key};
+  #       };
+  #     in {
+  #       name = keyTransform entry;
+  #       value = valueTransform entry;
+  #     }) (attrNames attrs)
+  #   );
+
+  # indent :: string -> string
+  indent = text:
+    lib.concatStringsSep
+    "\n"
+    (map (x: "   ${x}") (lib.splitString "\n" text));
 
   # mapFilterAttrs ::
   #   (name -> value -> bool)
@@ -82,3 +146,33 @@ with lib; rec {
   in
     recurse {} [] tree;
 }
+#
+#### utils.nix contents before rem
+# {lib}:
+# with builtins;
+# {
+#   entries = attrs:
+#     map (key: {
+#       key = key;
+#       value = attrs.${key};
+#     }) (attrNames attrs);
+#
+#   transformAttrs = attrs: keyTransform: valueTransform:
+#     listToAttrs (
+#       map (key: let
+#         entry = {
+#           key = key;
+#           value = attrs.${key};
+#         };
+#       in {
+#         name = keyTransform entry;
+#         value = valueTransform entry;
+#       }) (attrNames attrs)
+#     );
+#
+#   indent = text:
+#     lib.concatStringsSep
+#     "\n"
+#     (map (x: "   ${x}") (lib.splitString "\n" text));
+# }
+
