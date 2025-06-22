@@ -6,11 +6,6 @@
 }: {
   options = {
     nixModule.enable = lib.mkEnableOption "Enable nix settings";
-    nixModule.stateVersion = lib.mkOption {
-      type = lib.types.str;
-      default = "25.05";
-      description = "The state version to use";
-    };
   };
 
   config = lib.mkIf config.nixModule.enable {
