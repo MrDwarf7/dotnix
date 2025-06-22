@@ -19,7 +19,7 @@
       theme = pkgs.lib.importTOML ./tokyo-night-yazi.toml; # https://github.com/BennyOe/tokyo-night.yazi.git
 
       settings = {
-        manager = {
+        mgr = {
           show_hidden = true;
           show_symlink = true;
           linemode = "mtime_better";
@@ -229,7 +229,7 @@
       # '';
 
       keymap = {
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           {
             on = "<Enter>";
             run = "plugin smart-enter";
