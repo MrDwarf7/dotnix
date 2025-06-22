@@ -16,7 +16,8 @@
       initLua = ./init.lua;
       keymap = pkgs.lib.importTOML ./keymap.toml;
       settings = pkgs.lib.importTOML ./yazi.toml;
-      theme = pkgs.lib.importTOML ./tokyo-night-yazi.toml; # https://github.com/BennyOe/tokyo-night.yazi.git
+      # theme = pkgs.lib.importTOML ./tokyo-night-yazi.toml; # https://github.com/BennyOe/tokyo-night.yazi.git
+      theme = pkgs.lib.importTOML ./flavor.toml; # https://github.com/BennyOe/tokyo-night.yazi.git
 
       # settings = {
       #   mgr = {
