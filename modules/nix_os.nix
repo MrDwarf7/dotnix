@@ -15,7 +15,7 @@
 
   config = lib.mkIf config.nixModule.enable {
     nixpkgs.config.allowUnfree = true;
-    system.stateVersion = config.nixModule.stateVersion;
+    system.stateVersion = "25.05";
     nix = {
       # gc = {
       #   automatic = true;
