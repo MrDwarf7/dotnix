@@ -51,8 +51,8 @@
       environment.TMPDIR = "/var/tmp"; # Don't build stuff on TMPFS lol
     };
     system.switch = {
-      enable = false;
-      enableNg = true;
+      enable = true;
+      # enableNg = true;
     };
   };
 }
