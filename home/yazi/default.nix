@@ -14,164 +14,164 @@
       enable = true;
 
       initLua = ./init.lua;
-      # keymap = pkgs.lib.importTOML ./keymap.toml;
-      # settings = pkgs.lib.importTOML ./settings.toml;
+      keymap = pkgs.lib.importTOML ./keymap.toml;
+      settings = pkgs.lib.importTOML ./yazi.toml;
       theme = pkgs.lib.importTOML ./tokyo-night-yazi.toml; # https://github.com/BennyOe/tokyo-night.yazi.git
 
-      settings = {
-        mgr = {
-          show_hidden = true;
-          show_symlink = true;
-          linemode = "mtime_better";
-          sort_by = "natural";
-        };
-        opener = {
-          edit = [
-            {
-              run = "nvim \"$@\"";
-              block = true;
-              for = "unix";
-            }
-            {
-              run = "nvim %*";
-              block = true;
-              desc = "nvim (block)";
-              for = "windows";
-            }
-          ];
-          open = [
-            {
-              run = "nvim %*";
-              block = true;
-              desc = "nvim (block)";
-              for = "windows";
-            }
-          ];
-          reveal = [];
-          extract = [];
-          play = [];
-        };
-        open = {
-          prepend_rules = [
-            {
-              name = ".gitconfig";
-              run = "nvim %*";
-              use = [
-                "open"
-                "edit"
-              ];
-              for = "windows";
-            }
-            {
-              name = ".gitconfig";
-              run = "nvim $@";
-              use = [
-                "open"
-                "edit"
-              ];
-              for = "unix";
-            }
-          ];
-        };
-        plugin = {
-          prepend_previewers = [
-            {
-              mime = "text/csv";
-              run = "miller";
-            }
-            {
-              name = "*.md";
-              run = "rich-preview";
-            }
-            {
-              name = "*.ipynb";
-              run = "rich-preview";
-            }
-            {
-              name = "*.json";
-              run = "rich-preview";
-            }
-            {
-              name = "*.jsonc";
-              run = "rich-preview";
-            }
-            {
-              mime = "application/*zip";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-tar";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-bzip2";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-7z-compressed";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-rar";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-xz";
-              run = "ouch";
-            }
-            {
-              mime = "application/zstd";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-zstd";
-              run = "ouch";
-            }
-            {
-              mime = "application/x-zstd-compressed-tar";
-              run = "ouch";
-            }
-            {
-              mime = "application/toml";
-              run = "nvim %*";
-            }
-            {
-              mime = ".gitconfig";
-              run = "nvim %*";
-              for = "windows";
-            }
-            {
-              mime = ".gitconfig";
-              run = "nvim $@";
-              for = "unix";
-            }
-          ];
-          prepend_fetchers = [
-            {
-              id = "git";
-              name = "*";
-              run = "git";
-            }
-            {
-              id = "git";
-              name = "*/";
-              run = "git";
-            }
-          ];
-          append_previewers = [
-            {
-              name = "*";
-              run = "hexyl";
-            }
-            # # https://github.com/Reledia/glow.yazi
-            # { name = "*.md"; run = "glow" };
-          ];
-        };
-        preview = {
-          max_width = 1000;
-          max_height = 1000;
-        };
-      };
+      # settings = {
+      #   mgr = {
+      #     show_hidden = true;
+      #     show_symlink = true;
+      #     linemode = "mtime_better";
+      #     sort_by = "natural";
+      #   };
+      #   opener = {
+      #     edit = [
+      #       {
+      #         run = "nvim \"$@\"";
+      #         block = true;
+      #         for = "unix";
+      #       }
+      #       {
+      #         run = "nvim %*";
+      #         block = true;
+      #         desc = "nvim (block)";
+      #         for = "windows";
+      #       }
+      #     ];
+      #     open = [
+      #       {
+      #         run = "nvim %*";
+      #         block = true;
+      #         desc = "nvim (block)";
+      #         for = "windows";
+      #       }
+      #     ];
+      #     reveal = [];
+      #     extract = [];
+      #     play = [];
+      #   };
+      #   open = {
+      #     prepend_rules = [
+      #       {
+      #         name = ".gitconfig";
+      #         run = "nvim %*";
+      #         use = [
+      #           "open"
+      #           "edit"
+      #         ];
+      #         for = "windows";
+      #       }
+      #       {
+      #         name = ".gitconfig";
+      #         run = "nvim $@";
+      #         use = [
+      #           "open"
+      #           "edit"
+      #         ];
+      #         for = "unix";
+      #       }
+      #     ];
+      #   };
+      #   plugin = {
+      #     prepend_previewers = [
+      #       {
+      #         mime = "text/csv";
+      #         run = "miller";
+      #       }
+      #       {
+      #         name = "*.md";
+      #         run = "rich-preview";
+      #       }
+      #       {
+      #         name = "*.ipynb";
+      #         run = "rich-preview";
+      #       }
+      #       {
+      #         name = "*.json";
+      #         run = "rich-preview";
+      #       }
+      #       {
+      #         name = "*.jsonc";
+      #         run = "rich-preview";
+      #       }
+      #       {
+      #         mime = "application/*zip";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-tar";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-bzip2";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-7z-compressed";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-rar";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-xz";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/zstd";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-zstd";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/x-zstd-compressed-tar";
+      #         run = "ouch";
+      #       }
+      #       {
+      #         mime = "application/toml";
+      #         run = "nvim %*";
+      #       }
+      #       {
+      #         mime = ".gitconfig";
+      #         run = "nvim %*";
+      #         for = "windows";
+      #       }
+      #       {
+      #         mime = ".gitconfig";
+      #         run = "nvim $@";
+      #         for = "unix";
+      #       }
+      #     ];
+      #     prepend_fetchers = [
+      #       {
+      #         id = "git";
+      #         name = "*";
+      #         run = "git";
+      #       }
+      #       {
+      #         id = "git";
+      #         name = "*/";
+      #         run = "git";
+      #       }
+      #     ];
+      #     append_previewers = [
+      #       {
+      #         name = "*";
+      #         run = "hexyl";
+      #       }
+      #       # # https://github.com/Reledia/glow.yazi
+      #       # { name = "*.md"; run = "glow" };
+      #     ];
+      #   };
+      #   preview = {
+      #     max_width = 1000;
+      #     max_height = 1000;
+      #   };
+      # };
 
       plugins = {
         diff = "${inputs.yazi-plugins}/diff.yazi";
@@ -228,155 +228,155 @@
       # end
       # '';
 
-      keymap = {
-        mgr.prepend_keymap = [
-          {
-            on = "<Enter>";
-            run = "plugin smart-enter";
-            desc = "Enter child dir, or open file";
-          }
-          {
-            on = "A";
-            run = "create";
-            desc = "Create a file (ends with / for directories)";
-          }
-          {
-            on = "Q";
-            run = "quit";
-            desc = "Quit the process";
-          }
-          {
-            on = "q";
-            run = "quit --no-cwd-file";
-            desc = "Quit the process without outputting cwd-file";
-          }
-          {
-            on = "<C-c>";
-            run = "close";
-            desc = "Close the current tab, or quit if it's last";
-          }
-          {
-            on = ["y" "f"];
-            run = "copy path";
-            desc = "Copy the file path";
-          }
-          {
-            on = ["y" "c"];
-            run = "copy dirname";
-            desc = "Copy the directory path";
-          }
-          {
-            on = ["y" "n"];
-            run = "copy filename";
-            desc = "Copy the filename";
-          }
-          {
-            on = ["y" "N"];
-            run = "copy name_without_ext";
-            desc = "Copy the filename without extension";
-          }
-          {
-            on = ["y" "y"];
-            run = "yank";
-            desc = "Yank selected files (copy)";
-          }
-          {
-            on = ["<C-y>"];
-            run = "unyank";
-            desc = "Cancel the yank status";
-          }
-          {
-            on = "<Space>";
-            run = "toggle --state=none";
-            desc = "Toggle the current selection state";
-          }
-          {
-            on = "V";
-            run = "visual_mode";
-            desc = "Enter visual mode (selection mode)";
-          }
-          {
-            on = "v";
-            run = "visual_mode --unset";
-            desc = "Enter visual mode (unset mode)";
-          }
-          {
-            on = ["g" "d"];
-            run = "plugin diff";
-            desc = "Diff the selected with the hovered file";
-          }
-          {
-            on = ["g" "i"];
-            run = "plugin lazygit";
-            desc = "run lazygit";
-          }
-          {
-            on = "l";
-            run = "plugin smart-enter";
-            desc = "Enter the child directory or open the file";
-          }
-          {
-            on = ["m" "m"];
-            run = "linemode mtime_better";
-            desc = "Linemode: mtime_better";
-          }
-          {
-            on = ["1"];
-            run = "plugin relative-motions 1";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["2"];
-            run = "plugin relative-motions 2";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["3"];
-            run = "plugin relative-motions 3";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["4"];
-            run = "plugin relative-motions 4";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["5"];
-            run = "plugin relative-motions 5";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["6"];
-            run = "plugin relative-motions 6";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["7"];
-            run = "plugin relative-motions 7";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["8"];
-            run = "plugin relative-motions 8";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["9"];
-            run = "plugin relative-motions 9";
-            desc = "Move in relative steps";
-          }
-          {
-            on = ["C"];
-            run = "plugin ouch zip";
-            desc = "Compress with ouch";
-          }
-          {
-            on = ["="];
-            run = "plugin eza-preview";
-            desc = "Toggle tree/list preview";
-          }
-        ];
-      };
+      # keymap = {
+      #   mgr.prepend_keymap = [
+      #     {
+      #       on = "<Enter>";
+      #       run = "plugin smart-enter";
+      #       desc = "Enter child dir, or open file";
+      #     }
+      #     {
+      #       on = "A";
+      #       run = "create";
+      #       desc = "Create a file (ends with / for directories)";
+      #     }
+      #     {
+      #       on = "Q";
+      #       run = "quit";
+      #       desc = "Quit the process";
+      #     }
+      #     {
+      #       on = "q";
+      #       run = "quit --no-cwd-file";
+      #       desc = "Quit the process without outputting cwd-file";
+      #     }
+      #     {
+      #       on = "<C-c>";
+      #       run = "close";
+      #       desc = "Close the current tab, or quit if it's last";
+      #     }
+      #     {
+      #       on = ["y" "f"];
+      #       run = "copy path";
+      #       desc = "Copy the file path";
+      #     }
+      #     {
+      #       on = ["y" "c"];
+      #       run = "copy dirname";
+      #       desc = "Copy the directory path";
+      #     }
+      #     {
+      #       on = ["y" "n"];
+      #       run = "copy filename";
+      #       desc = "Copy the filename";
+      #     }
+      #     {
+      #       on = ["y" "N"];
+      #       run = "copy name_without_ext";
+      #       desc = "Copy the filename without extension";
+      #     }
+      #     {
+      #       on = ["y" "y"];
+      #       run = "yank";
+      #       desc = "Yank selected files (copy)";
+      #     }
+      #     {
+      #       on = ["<C-y>"];
+      #       run = "unyank";
+      #       desc = "Cancel the yank status";
+      #     }
+      #     {
+      #       on = "<Space>";
+      #       run = "toggle --state=none";
+      #       desc = "Toggle the current selection state";
+      #     }
+      #     {
+      #       on = "V";
+      #       run = "visual_mode";
+      #       desc = "Enter visual mode (selection mode)";
+      #     }
+      #     {
+      #       on = "v";
+      #       run = "visual_mode --unset";
+      #       desc = "Enter visual mode (unset mode)";
+      #     }
+      #     {
+      #       on = ["g" "d"];
+      #       run = "plugin diff";
+      #       desc = "Diff the selected with the hovered file";
+      #     }
+      #     {
+      #       on = ["g" "i"];
+      #       run = "plugin lazygit";
+      #       desc = "run lazygit";
+      #     }
+      #     {
+      #       on = "l";
+      #       run = "plugin smart-enter";
+      #       desc = "Enter the child directory or open the file";
+      #     }
+      #     {
+      #       on = ["m" "m"];
+      #       run = "linemode mtime_better";
+      #       desc = "Linemode: mtime_better";
+      #     }
+      #     {
+      #       on = ["1"];
+      #       run = "plugin relative-motions 1";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["2"];
+      #       run = "plugin relative-motions 2";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["3"];
+      #       run = "plugin relative-motions 3";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["4"];
+      #       run = "plugin relative-motions 4";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["5"];
+      #       run = "plugin relative-motions 5";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["6"];
+      #       run = "plugin relative-motions 6";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["7"];
+      #       run = "plugin relative-motions 7";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["8"];
+      #       run = "plugin relative-motions 8";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["9"];
+      #       run = "plugin relative-motions 9";
+      #       desc = "Move in relative steps";
+      #     }
+      #     {
+      #       on = ["C"];
+      #       run = "plugin ouch zip";
+      #       desc = "Compress with ouch";
+      #     }
+      #     {
+      #       on = ["="];
+      #       run = "plugin eza-preview";
+      #       desc = "Toggle tree/list preview";
+      #     }
+      #   ];
+      # };
     };
   };
 }
